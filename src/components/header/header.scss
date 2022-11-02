@@ -1,0 +1,88 @@
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+// @use "../../styles/partials/index";
+
+.header {
+    &__container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: $color-primary-dark; //! want to move this to main.scss
+        padding: 0 1.6rem;
+    }
+
+    &__top, &__middle, &__bottom{
+        display: flex;
+        width: 100%;
+    }
+
+    &__top {
+        padding: 1.6rem 0;
+        background-color: $color-primary-light;
+        justify-content: center;
+
+        &-play {
+            background-color: $color-primary-blue;
+            // max-height: 2.5rem;
+            // max-width: 12rem;
+            width: 3.5rem;
+            height: 2.5rem;
+            align-self: center;
+            border-radius: 5px;
+            padding: .5rem 0;
+        }
+
+        &-title {
+            @include mobile-text-page-header;
+            padding-left: 1rem;
+
+        }
+    }
+
+    &__middle {
+        justify-content: space-between;
+
+        &-input {
+            @include mobile-form-styles;
+            width: 70%;
+        }
+
+
+        &-avater{
+            width: 3.6rem;
+            height: 3.6rem;
+            object-position: left;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    }
+
+    &__bottom {
+        width: 100%;
+        background-color: $color-primary-blue;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        border-radius: 4px;
+        height: 4rem;
+        border: none;
+        margin: 1.6rem 0;
+
+        &-arrow {
+            position: absolute;
+            left: 1rem;
+        }
+
+        &-txt {
+            vertical-align: middle;
+            padding: 1rem 0;
+            color: $color-primary-light;
+            font-size: 1.6rem;
+        }
+
+      
+    }
+}
