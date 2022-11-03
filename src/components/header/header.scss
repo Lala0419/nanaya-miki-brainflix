@@ -1,8 +1,4 @@
-@use "../../styles/partials/breakpoints" as *;
-@use "../../styles/partials/variables" as *;
-@use "../../styles/partials/mixins" as *;
-
-// @use "../../styles/partials/index";
+@use "../../styles/partials/index" as *;
 
 .header {
     &__container {
@@ -10,7 +6,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        color: $color-primary-dark; //! want to move this to main.scss
+        color: $color-primary-dark; //! want to move this to App.scss
         padding: 0 1.6rem;
     }
 

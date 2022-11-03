@@ -1,4 +1,4 @@
-@use "./partials/index";
+@use "./partials/index" as *;
 
 
 html,
@@ -119,6 +119,7 @@ section {
 
 body {
     line-height: 1;
+     color: $color-primary-dark; 
 }
 
 ol,

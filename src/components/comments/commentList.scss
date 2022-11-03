@@ -1,0 +1,200 @@
+@use "../../styles/partials/breakpoints" as breakpoints;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+::placeholder {
+	color: $color-primary-dark;
+}
+
+.comment {
+	padding: 0 1.6rem;
+	&__title {
+		color: $color-primary-dark;
+		@include mobile-text-section-header;
+		padding-bottom: 1.6rem;
+
+		@include breakpoints.medium {
+			@include tablet-desk-text-section-header;
+		}
+	}
+
+	&__top-container {
+		display: flex;
+
+		@include breakpoints.medium {
+			padding-left: 7rem;
+		}
+
+		@include breakpoints.large {
+			padding-left: 0;
+			width: 50%;
+			margin: auto;
+		}
+	}
+
+	&__icon {
+		max-width: 3.6rem;
+		max-height: 3.6rem;
+		object-position: left;
+		border-radius: 50%;
+		object-fit: cover;
+		margin-top: 3.4rem;
+
+		@include breakpoints.medium {
+			max-width: 4.8rem;
+			max-height: 4.8rem;
+		}
+	}
+
+	&__form {
+		width: 100%;
+		padding-left: 1.6rem;
+		text-align: right;
+	}
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	&__form-label {
+		color: $color-primary-inactive;
+		font-weight: 700;
+		@include label-padding;
+		@include mobile-text-labels-buttons;
+		text-align: left;
+		letter-spacing: 0.05rem;
+
+		@include breakpoints.medium {
+			@include tablet-desk-text-labels-buttons;
+		}
+	}
+
+	&__form-input {
+		@include mobile-form-styles;
+
+		&:focus {
+			@include form-field-border--active;
+		}
+
+		&--error {
+			border: 1px solid #d22d2d;
+		}
+
+		&--comment {
+			height: 8rem;
+			font-family: inherit;
+			font-weight: 500;
+			resize: none;
+
+			@include breakpoints.medium {
+				height: 10rem;
+			}
+
+			&--error {
+				border: 1px solid #d22d2d;
+			}
+		}
+
+		@include breakpoints.medium {
+			@include tablet-desktop-form-styles;
+		}
+	}
+
+	&__button {
+		width: inherit;
+		margin: 2rem 0;
+		background-color: $color-primary-blue;
+		color: $color-primary-light;
+		border: none;
+		border-radius: 4px;
+		height: 40px;
+		@include mobile-text-labels-buttons;
+		position: relative;
+
+		&--plus {
+			position: absolute;
+			left: 1rem;
+			top: 1rem;
+		}
+
+		&:hover {
+			background-color: $color-secondary-dark;
+			cursor: pointer;
+		}
+
+		@include breakpoints.medium {
+			padding: 0 3.2rem;
+			// min-width: 150px;
+			width: auto;
+			@include tablet-desk-text-labels-buttons;
+		}
+	}
+}
+
+.newComment {
+	display: flex;
+	padding: 1.6rem 0;
+	@include divide-border-top;
+
+	@include breakpoints.medium {
+		margin-left: 7rem;
+	}
+
+	@include breakpoints.large {
+		padding-left: 0;
+		width: 50%;
+		margin: auto;
+	}
+
+	&__icon {
+		width: 36px;
+		height: 36px;
+		object-position: left;
+		border-radius: 50%;
+		object-fit: cover;
+		background-color: $color-secondary-outline;
+
+		@include breakpoints.medium {
+			width: 48px;
+			height: 48px;
+		}
+	}
+
+	&__list-container {
+		padding-left: 1.6rem;
+		width: 93%;
+	}
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	&__top {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	&__name {
+		@include mobile-text-subheader-footer;
+	}
+
+	&__date {
+		color: $color-secondary-outline;
+		@include mobile-text-body-footer;
+	}
+
+	&__comment {
+		@include mobile-text-body-footer;
+	}
+}
+
+.text__error {
+	color: rgb(255, 45, 45);
+	font-size: 1.6rem;
+	font-weight: 500;
+}

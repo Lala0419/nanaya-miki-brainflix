@@ -1,0 +1,63 @@
+@use "../../styles/partials/index" as *;
+
+.detail {
+	&__container {
+		display: flex;
+		flex-direction: column;
+		padding: 1.6rem;
+	}
+
+	&__top {
+		display: flex;
+		flex-direction: column;
+
+		&-title {
+			@include mobile-text-page-header;
+			@include divide-border-bottom;
+		}
+	}
+
+	&__middle {
+		display: flex;
+		@include mobile-text-body-footer;
+		color: $color-primary-inactive;
+		padding: 1.6rem 0;
+		@include divide-border-bottom;
+
+		&-left,
+		&-right {
+			display: flex;
+			flex-direction: column;
+			width: 50%;
+		}
+
+		&-channel {
+			@include mobile-text-subheader-footer;
+			color: $color-primary-dark;
+			padding-bottom: 1rem;
+		}
+
+		&-views {
+			padding-bottom: 1rem;
+
+			&-container {
+				display: inline-block;
+				vertical-align: text-top;
+				margin-right: 1rem;
+			}
+		}
+
+		&-likes {
+			&-container {
+				display: inline-block;
+				vertical-align: text-top;
+				margin-right: 1rem;
+			}
+		}
+	}
+
+	&__bottom {
+		@include mobile-text-body-footer;
+		padding: 1rem 0;
+	}
+}
