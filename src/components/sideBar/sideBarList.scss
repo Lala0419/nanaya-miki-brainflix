@@ -16,6 +16,7 @@
 
 		@include breakpoints.medium {
 			@include tablet-desk-text-section-header;
+			padding-top: 2rem;
 		}
 	}
 

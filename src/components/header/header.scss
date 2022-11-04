@@ -12,6 +12,10 @@
 			flex-direction: row;
 			padding: 1.6rem 3.6rem;
 		}
+
+		@include breakpoints.medium {
+			padding: 1.6rem 10rem;
+		}
 	}
 
 	&__top,
@@ -34,6 +38,10 @@
 			align-items: center;
 			padding: 0;
 			width: 70%;
+		}
+
+		@include breakpoints.medium {
+			width: 100%;
 		}
 
 		&-play {
@@ -60,6 +68,10 @@
 	&__middle {
 		justify-content: space-between;
 		position: relative;
+
+		@include breakpoints.large {
+			width: 50%;
+		}
 
 		&-input {
 			@include mobile-form-styles;
@@ -140,6 +152,9 @@
 			@include breakpoints.medium {
 				display: initial;
 				margin-left: 1rem;
+			}
+			@include breakpoints.large {
+				margin-left: 3rem;
 			}
 		}
 	}
