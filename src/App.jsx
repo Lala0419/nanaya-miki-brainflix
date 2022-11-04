@@ -8,7 +8,6 @@ import { getVideoDetails, getVideos } from "./utils/utils";
 
 function App() {
 	const defaultId = "84e96018-4022-434e-80bf-000ce4cd12b8";
-
 	const [videoId, setVideoId] = useState(defaultId);
 	const [videos, setVideos] = useState(getVideos(videoId));
 	const [videoDetails, setVideoDetails] = useState(getVideoDetails(videoId));

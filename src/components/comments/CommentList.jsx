@@ -4,16 +4,46 @@ import Avater from "../../assets/images/Mohan-muruge.jpg";
 import Publish from "../../assets/icons/add_comment.svg";
 
 export const CommentList = ({ videoComments }) => {
-	const formattedDate = new Date(videoComments.timestamp)
-		.toLocaleString("en-US", {
-			timeZone: "UTC",
-			month: "2-digit",
-			day: "2-digit",
-			year: "numeric",
-		})
-		.replace(/-/g, "/");
+	const formattedDate = (timeStamp) => {
+		return new Date(timeStamp)
+			.toLocaleString("en-US", {
+				timeZone: "UTC",
+				month: "2-digit",
+				day: "2-digit",
+				year: "numeric",
+			})
+			.replace(/-/g, "/");
+	};
 
-	console.log(formattedDate); //!invalid date
+	const clearError = (taskAddForm, taskAddInput, taskAddError) => {
+		taskAddForm.removeChild(taskAddError);
+		taskAddInput.classList.remove("comment__form-input--error");
+	};
+
+	const showError = () => {
+		const taskAddForm = document.querySelector(".comment__form");
+		const taskAddInput = document.querySelector(".comment__form-input");
+
+		taskAddInput.classList.add("comment__form-input--error");
+
+		const taskAddError = document.createElement("p");
+		taskAddError.textContent = "These fields can not be empty!";
+		taskAddError.classList.add("text__error");
+		taskAddForm.appendChild(taskAddError);
+
+		setTimeout(() => clearError(taskAddForm, taskAddInput, taskAddError), 2000);
+	};
+
+	const addComment = (event) => {
+		event.preventDefault();
+		const inputCommentValue = event.target.comment.value;
+		if (inputCommentValue.length === 0) {
+			showError();
+			return;
+		}
+
+		event.target.reset();
+	};
 
 	return (
 		<section className="comment">
@@ -24,7 +54,10 @@ export const CommentList = ({ videoComments }) => {
 					alt="avator"
 					className="comment__icon"
 				/>
-				<form className="comment__form">
+				<form
+					className="comment__form"
+					onSubmit={(event) => addComment(event)}
+				>
 					<div className="comment__list-container">
 						<div className="comment__list">
 							<label
@@ -33,12 +66,12 @@ export const CommentList = ({ videoComments }) => {
 							>
 								JOIN THE CONVERSATION
 							</label>
-							<textarea
+							<input
 								id="comment"
 								name="comment"
 								placeholder="Add a new comment"
 								className="comment__form-input comment__form-input--comment"
-							></textarea>
+							></input>
 						</div>
 					</div>
 					<button
@@ -70,7 +103,9 @@ export const CommentList = ({ videoComments }) => {
 									>
 										{comment.name}
 									</h2>
-									<span className="newComment__date">08/09/2021</span>
+									<span className="newComment__date">
+										{formattedDate(comment.timestamp)}
+									</span>
 								</div>
 								<h3 className="newComment__comment">{comment.comment}</h3>
 							</div>

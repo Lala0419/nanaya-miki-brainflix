@@ -8,13 +8,18 @@
 
 .comment {
 	padding: 0 1.6rem;
+	@include breakpoints.medium {
+		@include tablet-desk-text-section-header;
+		padding: 0 3.6rem;
+	}
+
 	&__title {
 		color: $color-primary-dark;
 		@include mobile-text-section-header;
 		padding-bottom: 1.6rem;
 
 		@include breakpoints.medium {
-			@include tablet-desk-text-section-header;
+			@include tablet-desk-text-subheader;
 		}
 	}
 
@@ -22,7 +27,6 @@
 		display: flex;
 
 		@include breakpoints.medium {
-			padding-left: 7rem;
 		}
 
 		@include breakpoints.large {
@@ -41,8 +45,9 @@
 		margin-top: 3.4rem;
 
 		@include breakpoints.medium {
-			max-width: 4.8rem;
-			max-height: 4.8rem;
+			width: 4.8rem;
+			height: 4.8rem;
+			margin-top: 2.8rem;
 		}
 	}
 
@@ -50,12 +55,24 @@
 		width: 100%;
 		padding-left: 1.6rem;
 		text-align: right;
+		padding-bottom: 2rem;
+
+		@include breakpoints.medium {
+			display: flex;
+			justify-content: space-between;
+		}
 	}
 
 	&__list {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+
+		&-container {
+			@include breakpoints.medium {
+				width: 70%;
+			}
+		}
 	}
 
 	&__form-label {
@@ -74,6 +91,11 @@
 	&__form-input {
 		@include mobile-form-styles;
 
+		@include breakpoints.medium {
+			padding: 0 1.6rem;
+			min-height: 4rem;
+		}
+
 		&:focus {
 			@include form-field-border--active;
 		}
@@ -84,21 +106,18 @@
 
 		&--comment {
 			height: 8rem;
+			min-width: 24rem;
 			font-family: inherit;
 			font-weight: 500;
 			resize: none;
 
 			@include breakpoints.medium {
-				height: 10rem;
+				height: min-content;
 			}
 
 			&--error {
 				border: 1px solid #d22d2d;
 			}
-		}
-
-		@include breakpoints.medium {
-			@include tablet-desktop-form-styles;
 		}
 	}
 
@@ -113,6 +132,10 @@
 		@include mobile-text-labels-buttons;
 		position: relative;
 
+		@include breakpoints.medium {
+			margin: 0;
+		}
+
 		&--plus {
 			position: absolute;
 			left: 1rem;
@@ -120,15 +143,15 @@
 		}
 
 		&:hover {
-			background-color: $color-secondary-dark;
+			background-color: $color-secondary-blue;
 			cursor: pointer;
 		}
 
 		@include breakpoints.medium {
 			padding: 0 3.2rem;
-			// min-width: 150px;
 			width: auto;
 			@include tablet-desk-text-labels-buttons;
+			align-self: flex-end;
 		}
 	}
 }
@@ -139,7 +162,6 @@
 	@include divide-border-top;
 
 	@include breakpoints.medium {
-		margin-left: 7rem;
 	}
 
 	@include breakpoints.large {
@@ -190,6 +212,10 @@
 
 	&__comment {
 		@include mobile-text-body-footer;
+
+		@include breakpoints.medium {
+			@include tablet-desk-text-body;
+		}
 	}
 }
 
