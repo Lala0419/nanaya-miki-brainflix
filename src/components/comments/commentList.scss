@@ -60,13 +60,16 @@
 		padding-left: 1.6rem;
 		text-align: right;
 		padding-bottom: 2rem;
+		position: relative;
 
 		@include breakpoints.medium {
 			display: flex;
 			justify-content: space-between;
+			position: relative;
 		}
 		@include breakpoints.large {
 			padding-right: 2rem;
+			padding-left: 2.5rem;
 		}
 	}
 
@@ -185,6 +188,11 @@
 	&__list-container {
 		padding-left: 1.6rem;
 		width: 93%;
+
+		@include breakpoints.large {
+			padding-left: 2.5rem;
+			padding-right: 1rem;
+		}
 	}
 
 	&__list {
@@ -206,6 +214,10 @@
 	&__date {
 		color: $color-secondary-outline;
 		@include mobile-text-body-footer;
+
+		@include breakpoints.large {
+			// padding-right: 0.5rem;
+		}
 	}
 
 	&__comment {
@@ -214,6 +226,10 @@
 		@include breakpoints.medium {
 			@include tablet-desk-text-body;
 		}
+		@include breakpoints.large {
+			padding-right: 0.5rem;
+			letter-spacing: 0.03rem;
+		}
 	}
 }
 
@@ -221,4 +237,13 @@
 	color: rgb(255, 45, 45);
 	font-size: 1.6rem;
 	font-weight: 500;
+	display: block;
+	position: absolute;
+	bottom: 0;
+
+	@include breakpoints.medium {
+		display: block;
+		position: absolute;
+		bottom: 0;
+	}
 }

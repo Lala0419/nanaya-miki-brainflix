@@ -27,7 +27,7 @@ export const CommentList = ({ videoComments }) => {
 		taskAddInput.classList.add("comment__form-input--error");
 
 		const taskAddError = document.createElement("p");
-		taskAddError.textContent = "These fields can not be empty!";
+		taskAddError.textContent = "This field can not be empty!";
 		taskAddError.classList.add("text__error");
 		taskAddForm.appendChild(taskAddError);
 
