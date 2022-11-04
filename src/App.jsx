@@ -5,6 +5,7 @@ import { Hero } from "./components/hero/Hero";
 import { ItemDetail } from "./components/item_detail/ItemDetail";
 import { SideBarList } from "./components/sideBar/SideBarList";
 import { getVideoDetails, getVideos } from "./utils/utils";
+import "./styles/App.scss";
 
 function App() {
 	const defaultId = "84e96018-4022-434e-80bf-000ce4cd12b8";
@@ -23,21 +24,19 @@ function App() {
 		<>
 			<Header />
 			<Hero videoImg={videoDetails} />
-			<ItemDetail videoDetail={videoDetails} />
-			<CommentList videoComments={videoDetails.comments} />
-			<SideBarList
-				videos={videos}
-				onVideoClick={handleClick}
-			/>
+			<div className="app__container">
+				<div className="app__left-container">
+					<ItemDetail videoDetail={videoDetails} />
+					<CommentList videoComments={videoDetails.comments} />
+				</div>
+				<div className="app__right-container">
+					<SideBarList
+						videos={videos}
+						onVideoClick={handleClick}
+					/>
+				</div>
+			</div>
 		</>
-
-		/*
-    
-    <ItemDetailList /> <ItemDetail />
-    <CommentList /> <Comment />
-    <SideBarList /> <SideBarItem />
-
-    */
 	);
 }
 

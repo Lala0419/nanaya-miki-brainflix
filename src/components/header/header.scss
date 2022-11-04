@@ -13,7 +13,7 @@
 			padding: 1.6rem 3.6rem;
 		}
 
-		@include breakpoints.medium {
+		@include breakpoints.large {
 			padding: 1.6rem 10rem;
 		}
 	}
@@ -70,7 +70,7 @@
 		position: relative;
 
 		@include breakpoints.large {
-			width: 50%;
+			width: 55%;
 		}
 
 		&-input {

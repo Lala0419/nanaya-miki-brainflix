@@ -12,6 +12,11 @@
 		padding: 0 3.6rem;
 	}
 
+	@include breakpoints.large {
+		padding-right: 0;
+		padding-left: 0;
+	}
+
 	&__title {
 		color: $color-primary-dark;
 		@include mobile-text-section-header;
@@ -29,9 +34,9 @@
 		}
 
 		@include breakpoints.large {
-			padding-left: 0;
-			width: 50%;
-			margin: auto;
+			// padding-left: 0;
+			// width: 50%;
+			// margin: auto;
 		}
 	}
 
@@ -60,6 +65,9 @@
 			display: flex;
 			justify-content: space-between;
 		}
+		@include breakpoints.large {
+			padding-right: 2rem;
+		}
 	}
 
 	&__list {
@@ -70,6 +78,9 @@
 		&-container {
 			@include breakpoints.medium {
 				width: 70%;
+			}
+			@include breakpoints.large {
+				width: 68%;
 			}
 		}
 	}
@@ -157,13 +168,9 @@
 	padding: 1.6rem 0;
 	@include divide-border-top;
 
-	@include breakpoints.medium {
-	}
-
 	@include breakpoints.large {
-		padding-left: 0;
-		width: 50%;
-		margin: auto;
+		padding-right: 2rem;
+		padding: 2.4rem 0;
 	}
 
 	&__icon {
@@ -173,11 +180,6 @@
 		border-radius: 50%;
 		object-fit: cover;
 		background-color: $color-secondary-outline;
-
-		@include breakpoints.medium {
-			width: 48px;
-			height: 48px;
-		}
 	}
 
 	&__list-container {

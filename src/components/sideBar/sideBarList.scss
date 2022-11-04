@@ -36,6 +36,9 @@
 			width: 15%;
 			height: 7rem;
 		}
+		@include breakpoints.large {
+			width: 35%;
+		}
 	}
 
 	&__desc {
@@ -44,6 +47,9 @@
 
 		@include breakpoints.medium {
 			width: 27.5%;
+		}
+		@include breakpoints.large {
+			width: 57%;
 		}
 	}
 

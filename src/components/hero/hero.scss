@@ -9,11 +9,20 @@
 		@include breakpoints.medium {
 			padding: 0 3.6rem;
 		}
+		@include breakpoints.large {
+			display: flex;
+			justify-content: center;
+		}
 	}
 
 	&__img {
 		width: 100%;
 		aspect-ratio: 16/9;
+
+		@include breakpoints.large {
+			width: 70%;
+			margin: auto 0;
+		}
 	}
 
 	&__play {
