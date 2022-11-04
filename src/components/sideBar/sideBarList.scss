@@ -1,4 +1,5 @@
 @use "../../styles/partials/index" as *;
+@use "../../styles/partials/breakpoints" as breakpoints;
 
 .sidebar {
 	&__list-container {
@@ -12,6 +13,10 @@
 		color: $color-primary-inactive;
 		@include mobile-text-section-header;
 		padding: 1rem 0;
+
+		@include breakpoints.medium {
+			@include tablet-desk-text-section-header;
+		}
 	}
 
 	&__container {
@@ -25,17 +30,34 @@
 		height: 5rem;
 		border-radius: 4px;
 		background-color: $color-secondary-outline;
+
+		@include breakpoints.medium {
+			width: 15%;
+			height: 7rem;
+		}
 	}
 
 	&__desc {
 		padding-left: 2rem;
 		width: 70%;
+
+		@include breakpoints.medium {
+			width: 27.5%;
+		}
 	}
 
 	&__title {
 		@include mobile-text-subheader-footer;
+
+		@include breakpoints.medium {
+			@include tablet-desk-text-subheader;
+		}
 	}
 	&__channel {
 		@include mobile-text-body-footer;
+
+		@include breakpoints.medium {
+			@include tablet-desk-text-body;
+		}
 	}
 }
