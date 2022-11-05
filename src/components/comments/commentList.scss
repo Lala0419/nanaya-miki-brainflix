@@ -66,6 +66,7 @@
 			display: flex;
 			justify-content: space-between;
 			position: relative;
+			padding-left: 3rem;
 		}
 		@include breakpoints.large {
 			padding-right: 2rem;
@@ -107,6 +108,7 @@
 		@include breakpoints.medium {
 			padding: 0 1.6rem;
 			min-height: 4rem;
+			padding-top: 1rem;
 		}
 
 		&:focus {
@@ -125,7 +127,7 @@
 			resize: none;
 
 			@include breakpoints.medium {
-				height: min-content;
+				height: 4rem;
 			}
 
 			&--error {
@@ -171,9 +173,14 @@
 	padding: 1.6rem 0;
 	@include divide-border-top;
 
+	@include breakpoints.medium {
+		justify-content: space-between;
+	}
+
 	@include breakpoints.large {
 		padding-right: 2rem;
 		padding: 2.4rem 0;
+		justify-content: initial;
 	}
 
 	&__icon {

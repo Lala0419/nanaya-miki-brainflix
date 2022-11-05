@@ -66,12 +66,12 @@ export const CommentList = ({ videoComments }) => {
 							>
 								JOIN THE CONVERSATION
 							</label>
-							<input
+							<textarea
 								id="comment"
 								name="comment"
 								placeholder="Add a new comment"
 								className="comment__form-input comment__form-input--comment"
-							></input>
+							></textarea>
 						</div>
 					</div>
 					<button
