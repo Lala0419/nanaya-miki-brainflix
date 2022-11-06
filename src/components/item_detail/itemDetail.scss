@@ -1,0 +1,119 @@
+@use "../../styles/partials/index" as *;
+@use "../../styles/partials/breakpoints" as breakpoints;
+
+.detail {
+	&__container {
+		display: flex;
+		flex-direction: column;
+		padding: 1.6rem;
+
+		@include breakpoints.medium {
+			padding: 2.4rem 3.6rem;
+		}
+		@include breakpoints.large {
+			padding: 0;
+			padding-top: 2.4rem;
+		}
+	}
+
+	&__top {
+		display: flex;
+		flex-direction: column;
+
+		&-title {
+			@include mobile-text-page-header;
+			@include divide-border-bottom;
+
+			@include breakpoints.medium {
+				border: none;
+				@include tablet-desk-text-page-header;
+			}
+		}
+	}
+
+	&__middle {
+		display: flex;
+		@include mobile-text-body-footer;
+		color: $color-primary-inactive;
+		padding: 1.6rem 0;
+		@include divide-border-bottom;
+
+		@include breakpoints.medium {
+			padding-bottom: 0;
+			@include tablet-desk-text-body;
+		}
+
+		&-left,
+		&-right {
+			display: flex;
+			flex-direction: column;
+			width: 50%;
+
+			@include breakpoints.medium {
+				flex-direction: row;
+			}
+		}
+
+		&-left {
+			@include breakpoints.medium {
+				justify-content: flex-start;
+			}
+		}
+
+		&-right {
+			@include breakpoints.medium {
+				justify-content: flex-end;
+			}
+		}
+
+		&-channel {
+			@include mobile-text-subheader-footer;
+			color: $color-primary-dark;
+			padding-bottom: 1rem;
+
+			@include breakpoints.medium {
+				@include tablet-desk-text-subheader;
+				padding-right: 3rem;
+			}
+		}
+
+		&-views {
+			padding-bottom: 1rem;
+
+			&-container {
+				display: inline-block;
+				vertical-align: text-top;
+				margin-right: 1rem;
+			}
+			@include breakpoints.medium {
+				padding-right: 3rem;
+			}
+		}
+
+		&-likes {
+			&-container {
+				display: inline-block;
+				vertical-align: text-top;
+				margin-right: 1rem;
+			}
+
+			@include breakpoints.large {
+				padding-right: 2rem;
+			}
+		}
+	}
+
+	&__bottom {
+		@include mobile-text-body-footer;
+		padding: 1rem 0;
+
+		@include breakpoints.medium {
+			@include tablet-desk-text-body;
+			padding: 2rem 0;
+		}
+		@include breakpoints.large {
+			padding-right: 2rem;
+			padding-bottom: 3.5em;
+		}
+	}
+}
