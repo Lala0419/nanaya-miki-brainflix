@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import "./commentList.scss";
 import Avater from "../../assets/images/Mohan-muruge.jpg";
 import Publish from "../../assets/icons/add_comment.svg";
 
 export const CommentList = ({ videoComments }) => {
+	const [comment, setComment] = useState("");
+	const [touchFlag, setTouchFlag] = useState(false);
+
+	const onCommentChange = (e) => {
+		setTouchFlag(true);
+		setComment(e.target.value);
+	};
+
+	const onFormSubmit = (e) => {
+		e.preventDefault();
+		if (!comment) {
+			setTouchFlag(true);
+			return;
+		}
+		addComment(e.target.comment.value);
+	};
+
 	const formattedDate = (timeStamp) => {
 		return new Date(timeStamp)
 			.toLocaleString("en-US", {
@@ -15,32 +32,8 @@ export const CommentList = ({ videoComments }) => {
 			.replace(/-/g, "/");
 	};
 
-	const clearError = (taskAddForm, taskAddInput, taskAddError) => {
-		taskAddForm.removeChild(taskAddError);
-		taskAddInput.classList.remove("comment__form-input--error");
-	};
-
-	const showError = () => {
-		const taskAddForm = document.querySelector(".comment__form");
-		const taskAddInput = document.querySelector(".comment__form-input");
-
-		taskAddInput.classList.add("comment__form-input--error");
-
-		const taskAddError = document.createElement("p");
-		taskAddError.textContent = "This field can not be empty!";
-		taskAddError.classList.add("text__error");
-		taskAddForm.appendChild(taskAddError);
-
-		setTimeout(() => clearError(taskAddForm, taskAddInput, taskAddError), 2000);
-	};
-
 	const addComment = (event) => {
 		event.preventDefault();
-		const inputCommentValue = event.target.comment.value;
-		if (inputCommentValue.length === 0) {
-			showError();
-			return;
-		}
 
 		event.target.reset();
 	};
@@ -56,7 +49,7 @@ export const CommentList = ({ videoComments }) => {
 				/>
 				<form
 					className="comment__form"
-					onSubmit={(event) => addComment(event)}
+					onSubmit={onFormSubmit}
 				>
 					<div className="comment__list-container">
 						<div className="comment__list">
@@ -68,9 +61,13 @@ export const CommentList = ({ videoComments }) => {
 							</label>
 							<textarea
 								id="comment"
+								onChange={onCommentChange}
 								name="comment"
 								placeholder="Add a new comment"
-								className="comment__form-input comment__form-input--comment"
+								className={`comment__form-input comment__form-input--comment ${
+									touchFlag && !comment && "comment__form-input--error"
+								}`}
+								value={comment}
 							></textarea>
 						</div>
 					</div>
@@ -85,6 +82,13 @@ export const CommentList = ({ videoComments }) => {
 							className="comment__button--plus"
 						/>
 					</button>
+					{touchFlag &&
+						!comment &&
+						setTimeout(() => {
+							setTouchFlag(false);
+						}, 2000) && (
+							<p className="text__error">This field can not be empty!</p>
+						)}
 				</form>
 			</div>
 			<div className="newComment-container">

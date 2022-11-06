@@ -31,11 +31,10 @@
 		height: 5rem;
 		border-radius: 4px;
 		background-color: $color-secondary-outline;
-		transition: 0.3sec linear;
+		transition: 0.5s ease;
 
 		&:hover {
 			transform: scale(1.1);
-			transition: 0.5s ease;
 		}
 
 		@include breakpoints.medium {
