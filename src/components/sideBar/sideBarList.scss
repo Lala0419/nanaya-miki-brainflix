@@ -1,0 +1,80 @@
+@use "../../styles/partials/index" as *;
+@use "../../styles/partials/breakpoints" as breakpoints;
+
+.sidebar {
+	&__list-container {
+		display: flex;
+		flex-direction: column;
+		margin: 0 1.6rem;
+		@include divide-border-top;
+	}
+
+	&__list-title {
+		color: $color-primary-inactive;
+		@include mobile-text-section-header;
+		padding: 1rem 0;
+
+		@include breakpoints.medium {
+			@include tablet-desk-text-section-header;
+			padding-top: 2rem;
+		}
+	}
+
+	&__container {
+		display: flex;
+		padding: 1rem 0;
+		cursor: pointer;
+	}
+
+	&__img {
+		width: 35%;
+		height: 5rem;
+		border-radius: 4px;
+		background-color: $color-secondary-outline;
+		transition: 0.5s ease;
+
+		&:hover {
+			transform: scale(1.1);
+		}
+
+		@include breakpoints.medium {
+			width: 15%;
+			height: 7rem;
+		}
+		@include breakpoints.large {
+			width: 35%;
+		}
+	}
+
+	&__desc {
+		padding-left: 2rem;
+		width: 70%;
+
+		&:hover {
+			background-color: $color-secondary-outline;
+			border-radius: 4px;
+		}
+
+		@include breakpoints.medium {
+			width: 27.5%;
+		}
+		@include breakpoints.large {
+			width: 57%;
+		}
+	}
+
+	&__title {
+		@include mobile-text-subheader-footer;
+
+		@include breakpoints.medium {
+			@include tablet-desk-text-subheader;
+		}
+	}
+	&__channel {
+		@include mobile-text-body-footer;
+
+		@include breakpoints.medium {
+			@include tablet-desk-text-body;
+		}
+	}
+}

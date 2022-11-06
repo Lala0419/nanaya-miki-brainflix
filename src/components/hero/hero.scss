@@ -1,0 +1,45 @@
+@use "../../styles/partials/index" as *;
+@use "../../styles/partials/breakpoints" as breakpoints;
+
+.hero {
+	&__container {
+		position: relative;
+		background-color: $color-secondary-dark;
+
+		@include breakpoints.medium {
+			padding: 0 3.6rem;
+		}
+		@include breakpoints.large {
+			display: flex;
+			justify-content: center;
+		}
+	}
+
+	&__img {
+		width: 100%;
+		aspect-ratio: 16/9;
+
+		@include breakpoints.large {
+			width: 70%;
+			margin: auto 0;
+		}
+	}
+
+	&__play {
+		position: absolute;
+		border: 1px solid black;
+		background-color: opacify($color-primary-dark, $amount: 0.5);
+	}
+	&__scrub {
+		position: absolute;
+		border: 1px solid blue;
+	}
+	&__close {
+		position: absolute;
+		border: 1px solid red;
+	}
+	&__volumeup {
+		position: absolute;
+		border: 1px solid green;
+	}
+}
