@@ -4,21 +4,16 @@ import Avater from "../../assets/images/Mohan-muruge.jpg";
 import Publish from "../../assets/icons/add_comment.svg";
 
 export const CommentList = ({ videoComments }) => {
-	const [comment, setComment] = useState("");
-	const [touchFlag, setTouchFlag] = useState(false);
-
-	const onCommentChange = (e) => {
-		setTouchFlag(true);
-		setComment(e.target.value);
-	};
+	const [comment, setComment] = useState(true);
 
 	const onFormSubmit = (e) => {
+		console.log(e);
 		e.preventDefault();
-		if (!comment) {
-			setTouchFlag(true);
-			return;
+		if (e.target.value === "") {
+			setComment(false);
+		} else {
+			setComment(true);
 		}
-		addComment(e.target.comment.value);
 	};
 
 	const formattedDate = (timeStamp) => {
@@ -30,12 +25,6 @@ export const CommentList = ({ videoComments }) => {
 				year: "numeric",
 			})
 			.replace(/-/g, "/");
-	};
-
-	const addComment = (event) => {
-		event.preventDefault();
-
-		event.target.reset();
 	};
 
 	return (
@@ -61,13 +50,12 @@ export const CommentList = ({ videoComments }) => {
 							</label>
 							<textarea
 								id="comment"
-								onChange={onCommentChange}
 								name="comment"
+								onChange={onFormSubmit}
 								placeholder="Add a new comment"
 								className={`comment__form-input comment__form-input--comment ${
-									touchFlag && !comment && "comment__form-input--error"
+									!comment && "comment__form-input--error"
 								}`}
-								value={comment}
 							></textarea>
 						</div>
 					</div>
@@ -82,13 +70,13 @@ export const CommentList = ({ videoComments }) => {
 							className="comment__button--plus"
 						/>
 					</button>
-					{touchFlag &&
-						!comment &&
-						setTimeout(() => {
-							setTouchFlag(false);
-						}, 2000) && (
-							<p className="text__error">This field can not be empty!</p>
-						)}
+					{!comment && (
+						// setTimeout(
+						// 	() => clearError(),
+						// 	2000
+						// )
+						<p className="text__error">This field can not be empty!</p>
+					)}
 				</form>
 			</div>
 			<div className="newComment-container">
