@@ -11,12 +11,22 @@ function Header() {
 		<>
 			<div className="header__container">
 				<div className="header__top">
-					<img
-						className="header__top-play"
-						src={Play}
-						alt="play"
-					/>
-					<h1 className="header__top-title">BrainFlix</h1>
+					<Link
+						to="/"
+						className="header__link"
+					>
+						<img
+							className="header__top-play"
+							src={Play}
+							alt="play"
+						/>
+					</Link>
+					<Link
+						to="/"
+						className="header__link-top"
+					>
+						<h1 className="header__top-title">BrainFlix</h1>
+					</Link>
 				</div>
 				<div className="header__middle">
 					<input
@@ -40,9 +50,12 @@ function Header() {
 						alt="upload"
 						className="header__bottom-arrow"
 					/>
-					{/* <Link to="upload"> */}
-					<h2 className="header__bottom-txt">UPLOAD</h2>
-					{/* </Link> */}
+					<Link
+						to="/upload"
+						className="header__link-bottom"
+					>
+						<h2 className="header__bottom-txt">UPLOAD</h2>
+					</Link>
 				</button>
 				<img
 					className="header__bottom-avater"

@@ -1,6 +1,18 @@
 @use "../../styles/partials/index" as *;
 @use "../../styles/partials/breakpoints" as breakpoints;
 .header {
+	&__link {
+		&-top {
+			color: $color-secondary-dark;
+			text-decoration: none;
+		}
+
+		&-bottom {
+			color: $color-primary-light;
+			text-decoration: none;
+		}
+	}
+
 	&__container {
 		display: flex;
 		flex-direction: column;

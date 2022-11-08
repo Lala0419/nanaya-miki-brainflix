@@ -18,26 +18,26 @@ export const Upload = () => {
 						className="upload__middle-img"
 					/>
 					<div className="upload__middle-disc-box">
-						<form class="upload__middle-form">
-							<div class="upload__middle-list-container">
-								<div class="upload__middle-list">
+						<form className="upload__middle-form">
+							<div className="upload__middle-list-container">
+								<div className="upload__middle-list">
 									<label
 										for="name"
-										class="upload__middle-form-label"
+										className="upload__middle-form-label"
 									>
 										title your video
 									</label>
 									<input
 										type="text"
 										placeholder="Add a title to your video"
-										class="upload__middle-form-input"
+										className="upload__middle-form-input"
 										id="name"
 									/>
 								</div>
-								<div class="upload__middle-list">
+								<div className="upload__middle-list">
 									<label
 										for="comment"
-										class="upload__middle-form-label"
+										className="upload__middle-form-label"
 									>
 										add a video description
 									</label>
@@ -45,8 +45,8 @@ export const Upload = () => {
 										id="comment"
 										name="comment"
 										placeholder="Add a description to your video"
-										class="upload__middle-form-input upload__middle-form-input--comment"
-										minlength="5"
+										className="upload__middle-form-input upload__middle-form-input--comment"
+										minLength="5"
 									></textarea>
 								</div>
 							</div>
