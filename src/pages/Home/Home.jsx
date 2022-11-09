@@ -1,22 +1,26 @@
-// import axios from "axios";
+import axios from "axios";
 import React, { useState } from "react";
 import { CommentList } from "../../components/comments/CommentList";
 import { Hero } from "../../components/hero/Hero";
 import { ItemDetail } from "../../components/item_detail/ItemDetail";
 import { SideBarList } from "../../components/sideBar/SideBarList";
-import { getVideoDetails, getVideos } from "../../utils/utils";
+// import { getVideoDetails, getVideos } from "../../utils/utils";
 
-const URL = `https://project-2-api.herokuapp.com/?api_key=${process.env.REACT_APP_API_KEY}`;
+const URL = (endpoint) =>
+	`https://project-2-api.herokuapp.com/${endpoint}?api_key=${process.env.REACT_APP_API_KEY}`;
 
-const getSidebarVideos = URL;
-console.log(getSidebarVideos);
-// const getVideoDetail = (videoId) => `${URL("videos")}/${videoId}`;
-// console.log(getVideoDetail("84e96018-4022-434e-80bf-000ce4cd12b8"));
+const getVideos = URL("videos");
+
+const getVideoDetails = (videoId) => URL(`videos/${videoId}`);
+console.log(getVideos);
+console.log(getVideoDetails("84e96018-4022-434e-80bf-000ce4cd12b8"));
+
 export const Home = () => {
 	const defaultId = "84e96018-4022-434e-80bf-000ce4cd12b8";
 	const [videoId, setVideoId] = useState(defaultId);
-	const [videos, setVideos] = useState(getVideos(videoId));
+	const [videos, setVideos] = useState(getVideos);
 	const [videoDetails, setVideoDetails] = useState(getVideoDetails(videoId));
+	console.log(videoDetails);
 
 	const handleClick = (event, currentVideoId) => {
 		event.preventDefault();
@@ -26,10 +30,17 @@ export const Home = () => {
 	};
 
 	// useEffect(() => {
-	// 	axios.get(getSidebarVideos).then((response) => {
-	// 		setVideoDetails(response.data);
-	// 	});
-	// });
+	axios.get(getVideos).then((response) => {
+		console.log(response.data);
+		// setVideos(response.data);
+	});
+
+	axios
+		.get(getVideoDetails("84e96018-4022-434e-80bf-000ce4cd12b8"))
+		.then((response) => {
+			console.log(response.data);
+			// setVideoDetails(response.data);
+		});
 
 	return (
 		<>
