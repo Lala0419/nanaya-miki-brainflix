@@ -6,7 +6,7 @@ import Publish from "../../assets/icons/add_comment.svg";
 export const CommentList = ({ videoComments }) => {
 	const [comment, setComment] = useState("");
 	const [touchFlag, setTouchFlag] = useState(false);
-
+	console.log(videoComments);
 	const onCommentChange = (e) => {
 		setTouchFlag(true);
 		setComment(e.target.value);
@@ -40,10 +40,7 @@ export const CommentList = ({ videoComments }) => {
 
 	return (
 		<section className="comment">
-			<div className="comment__title">
-				{/* {videoComments.length}  */}
-				Comments
-			</div>
+			<div className="comment__title">{videoComments.length} Comments</div>
 			<div className="comment__top-container">
 				<img
 					src={Avater}
