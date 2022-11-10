@@ -6,7 +6,6 @@ import Publish from "../../assets/icons/add_comment.svg";
 export const CommentList = ({ videoComments }) => {
 	const [comment, setComment] = useState("");
 	const [touchFlag, setTouchFlag] = useState(false);
-	console.log(videoComments);
 	const onCommentChange = (e) => {
 		setTouchFlag(true);
 		setComment(e.target.value);

@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { CommentList } from "./components/comments/CommentList";
-// import Header from "./components/header/Header";
 import { Hero } from "./components/hero/Hero";
 import { ItemDetail } from "./components/item_detail/ItemDetail";
 import { SideBarList } from "./components/sideBar/SideBarList";
-// import { getVideoDetails, getVideos } from "./utils/utils";
-// import "./styles/App.scss";
 import axios from "axios";
 
 function App() {
@@ -20,8 +17,6 @@ function App() {
 	const handleClick = (event, currentVideoId) => {
 		event.preventDefault();
 		setVideoId(currentVideoId);
-		// setVideos(getVideos(currentVideoId));
-		// setVideoDetails(getVideoDetails(currentVideoId));
 	};
 
 	useEffect(() => {
@@ -29,17 +24,8 @@ function App() {
 			const { data } = await axios.get(
 				`https://project-2-api.herokuapp.com/videos/?api_key=${apiKey}`
 			);
-			// console.log(data);
-
-			// const getVideoDetails = data.find((video) => video.id === videoId);
-
-			// console.log(getVideoDetails);
-
-			// setVideoDetails(getVideoDetails);
-
 			setVideos(data.filter((video) => video.id !== videoId));
 		};
-
 		fetchVideos();
 	}, [videoId, apiKey]);
 
@@ -48,21 +34,10 @@ function App() {
 			const { data } = await axios.get(
 				`https://project-2-api.herokuapp.com/videos/${videoId}?api_key=${apiKey}`
 			);
-			// console.log(data);
-
-			// const getVideoDetails = data.find((video) => video.id === videoId);
-
-			// console.log(getVideoDetails);
-
 			setVideoDetails(data);
-
-			// setVideos(data.filter((video) => video.id !== videoId));
 		};
-
 		fetchVideoDetail();
 	}, [videoId, apiKey]);
-
-	console.log(videoDetails);
 
 	if (!videoDetails) {
 		return <div>Loading...</div>;
