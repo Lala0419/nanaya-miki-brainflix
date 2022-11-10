@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./sideBarList.scss";
 
 export const SideBarList = ({ videos, onVideoClick }) => {
@@ -9,13 +10,15 @@ export const SideBarList = ({ videos, onVideoClick }) => {
 				<div
 					className="sidebar__container"
 					key={video.id}
-					onClick={(event) => onVideoClick(event, video.id)}
+					// onClick={(event) => onVideoClick(event, video.id)}
 				>
-					<img
-						src={video.image}
-						alt={video.title}
-						className="sidebar__img"
-					/>
+					<Link to={`/video/${video.id}`}>
+						<img
+							src={video.image}
+							alt={video.title}
+							className="sidebar__img"
+						/>
+					</Link>
 					<div className="sidebar__desc">
 						<h2 className="sidebar__title">{video.title}</h2>
 						<h3 className="sidebar__channel">{video.channel}</h3>

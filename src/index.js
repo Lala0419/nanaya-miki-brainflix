@@ -14,6 +14,11 @@ root.render(
 			<Routes>
 				<Route
 					path="/"
+					exact
+					element={<App />}
+				/>
+				<Route
+					path="video/:Id"
 					element={<App />}
 				/>
 				<Route

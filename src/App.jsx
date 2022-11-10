@@ -4,20 +4,24 @@ import { Hero } from "./components/hero/Hero";
 import { ItemDetail } from "./components/item_detail/ItemDetail";
 import { SideBarList } from "./components/sideBar/SideBarList";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 function App() {
 	const apiKey = process.env.REACT_APP_API_KEY;
 
-	const defaultId = "84e96018-4022-434e-80bf-000ce4cd12b8";
-	const [videoId, setVideoId] = useState(defaultId);
+	const params = useParams();
+	const [videoId, setVideoId] = useState("");
+	// console.log("Id", Id);
+	// console.log("videoId", videoId);
+
 	const [videos, setVideos] = useState([]);
 	const [videoDetails, setVideoDetails] = useState(null);
 	//empty = true null= false
 
-	const handleClick = (event, currentVideoId) => {
-		event.preventDefault();
-		setVideoId(currentVideoId);
-	};
+	// const handleClick = (event, currentVideoId) => {
+	// 	event.preventDefault();
+	// 	setVideoId(currentVideoId);
+	// };
 
 	useEffect(() => {
 		const fetchVideos = async () => {
@@ -27,20 +31,26 @@ function App() {
 			setVideos(data.filter((video) => video.id !== videoId));
 		};
 		fetchVideos();
-	}, [videoId, apiKey]);
 
-	useEffect(() => {
 		const fetchVideoDetail = async () => {
 			const { data } = await axios.get(
 				`https://project-2-api.herokuapp.com/videos/${videoId}?api_key=${apiKey}`
 			);
 			setVideoDetails(data);
 		};
-		fetchVideoDetail();
+		if (videoId !== "") {
+			fetchVideoDetail();
+		}
 	}, [videoId, apiKey]);
 
+	useEffect(() => {
+		params.Id
+			? setVideoId(params.Id)
+			: setVideoId("84e96018-4022-434e-80bf-000ce4cd12b8");
+	}, [params.Id]);
+
 	if (!videoDetails) {
-		return <div>Loading...</div>;
+		return <di className="loading">Loading...</di>;
 	}
 
 	return (
@@ -54,7 +64,7 @@ function App() {
 				<div className="app__right-container">
 					<SideBarList
 						videos={videos}
-						onVideoClick={handleClick}
+						// onVideoClick={handleClick}
 					/>
 				</div>
 			</div>
