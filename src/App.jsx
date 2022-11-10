@@ -11,17 +11,10 @@ function App() {
 
 	const params = useParams();
 	const [videoId, setVideoId] = useState("");
-	// console.log("Id", Id);
-	// console.log("videoId", videoId);
 
 	const [videos, setVideos] = useState([]);
 	const [videoDetails, setVideoDetails] = useState(null);
 	//empty = true null= false
-
-	// const handleClick = (event, currentVideoId) => {
-	// 	event.preventDefault();
-	// 	setVideoId(currentVideoId);
-	// };
 
 	useEffect(() => {
 		const fetchVideos = async () => {
@@ -62,10 +55,7 @@ function App() {
 					<CommentList videoComments={videoDetails.comments} />
 				</div>
 				<div className="app__right-container">
-					<SideBarList
-						videos={videos}
-						// onVideoClick={handleClick}
-					/>
+					<SideBarList videos={videos} />
 				</div>
 			</div>
 		</>

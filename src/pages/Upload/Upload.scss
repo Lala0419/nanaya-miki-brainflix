@@ -30,6 +30,10 @@
 			border-bottom: 1px solid $color-secondary-outline;
 		}
 
+		@include breakpoints.large {
+			flex-direction: row;
+		}
+
 		&-title {
 			// padding-top: 1.6rem;
 			// padding-bottom: 0.5rem;
