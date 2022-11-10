@@ -11,12 +11,14 @@ export const Upload = () => {
 					<h1 className="upload__top-title">Upload Video</h1>
 				</div>
 				<div className="upload__middle">
-					<h2 className="upload__middle-title">VIDEO THUMBNAIL</h2>
-					<img
-						src={Thumbnail}
-						alt="bycle"
-						className="upload__middle-img"
-					/>
+					<div className="upload__middle-img-container">
+						<h2 className="upload__middle-title">VIDEO THUMBNAIL</h2>
+						<img
+							src={Thumbnail}
+							alt="bycle"
+							className="upload__middle-img"
+						/>
+					</div>
 					<div className="upload__middle-disc-box">
 						<form className="upload__middle-form">
 							<div className="upload__middle-list-container">

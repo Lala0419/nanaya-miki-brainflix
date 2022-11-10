@@ -3,11 +3,26 @@
 
 .upload {
 	padding: 1.6rem;
+
+	@include breakpoints.medium {
+		padding: 1.6rem 3.6rem;
+	}
+
+	@include breakpoints.large {
+		padding: 1.6rem 10rem;
+	}
 	&__top {
 		@include mobile-text-subheader-footer;
 
 		&-title {
+			padding: 1rem 0 2rem;
 			@include mobile-text-page-header;
+
+			@include breakpoints.medium {
+				@include tablet-desk-text-page-header;
+				padding-bottom: 2rem;
+				border-bottom: 1px solid $color-secondary-outline;
+			}
 		}
 	}
 
@@ -18,9 +33,17 @@
 		display: flex;
 		flex-direction: column;
 
+		@include breakpoints.medium {
+			padding-bottom: 2rem;
+			border-bottom: 1px solid $color-secondary-outline;
+		}
+
+		@include breakpoints.large {
+			flex-direction: row;
+			justify-content: space-between;
+		}
+
 		&-title {
-			// padding-top: 1.6rem;
-			// padding-bottom: 0.5rem;
 			color: $color-primary-inactive;
 			font-weight: 700;
 			@include label-padding;
@@ -32,6 +55,28 @@
 		&-img {
 			width: 100%;
 			border-radius: 4px;
+
+			@include breakpoints.medium {
+				width: 50%;
+			}
+
+			@include breakpoints.large {
+				width: 100%;
+
+				&-container {
+					@include breakpoints.large {
+						display: flex;
+						flex-direction: column;
+						width: 35rem;
+					}
+				}
+			}
+		}
+
+		&-disc-box {
+			@include breakpoints.large {
+				width: 65%;
+			}
 		}
 
 		&-form {
@@ -93,6 +138,12 @@
 	&__bottom {
 		position: relative;
 
+		@include breakpoints.medium {
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+		}
+
 		&-button {
 			font-family: "Avenir", sans-serif;
 			width: 100%;
@@ -111,9 +162,10 @@
 
 			@include breakpoints.medium {
 				padding: 0 3.2rem;
-				// min-width: 150px;
+
 				width: auto;
 				@include tablet-desk-text-labels-buttons;
+				order: 2;
 			}
 		}
 		&-publish {
@@ -126,6 +178,11 @@
 			text-align: center;
 			@include mobile-text-labels-buttons;
 			color: $color-primary-blue;
+
+			@include breakpoints.medium {
+				order: 1;
+				padding-right: 5rem;
+			}
 		}
 	}
 }
