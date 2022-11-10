@@ -26,23 +26,26 @@
 		cursor: pointer;
 	}
 
+	&__img-container {
+		width: 12.5rem;
+	}
+
 	&__img {
-		width: 35%;
+		width: 100%;
 		height: 5rem;
 		border-radius: 4px;
 		background-color: $color-secondary-outline;
 		transition: 0.5s ease;
+		height: 6rem;
 
 		&:hover {
 			transform: scale(1.1);
 		}
 
 		@include breakpoints.medium {
-			width: 15%;
 			height: 7rem;
 		}
 		@include breakpoints.large {
-			width: 35%;
 		}
 	}
 
@@ -71,6 +74,7 @@
 		}
 	}
 	&__channel {
+		padding-top: 0.5rem;
 		@include mobile-text-body-footer;
 
 		@include breakpoints.medium {

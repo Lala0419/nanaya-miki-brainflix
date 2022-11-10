@@ -5,16 +5,27 @@ import Publish from "../../assets/icons/add_comment.svg";
 
 export const CommentList = ({ videoComments }) => {
 	const [comment, setComment] = useState("");
-	const [touchFlag, setTouchFlag] = useState(false);
+	const [hasErrorMessage, setHasErrorMessage] = useState(false);
+
 	const onCommentChange = (e) => {
-		setTouchFlag(true);
 		setComment(e.target.value);
+		setHasErrorMessage(false);
+	};
+
+	const handleCommentClick = () => {
+		if (comment === "") {
+			setHasErrorMessage(true);
+			setTimeout(() => {
+				setHasErrorMessage(false);
+			}, 2000);
+		} else {
+			setHasErrorMessage(false);
+		}
 	};
 
 	const onFormSubmit = (e) => {
 		e.preventDefault();
 		if (!comment) {
-			setTouchFlag(true);
 			return;
 		}
 		addComment(e.target.comment.value);
@@ -64,7 +75,7 @@ export const CommentList = ({ videoComments }) => {
 								name="comment"
 								placeholder="Add a new comment"
 								className={`comment__form-input comment__form-input--comment ${
-									touchFlag && !comment && "comment__form-input--error"
+									hasErrorMessage && "comment__form-input--error"
 								}`}
 								value={comment}
 							></textarea>
@@ -73,6 +84,7 @@ export const CommentList = ({ videoComments }) => {
 					<button
 						id="comment__button"
 						className="comment__button"
+						onClick={handleCommentClick}
 					>
 						COMMENT
 						<img
@@ -81,13 +93,10 @@ export const CommentList = ({ videoComments }) => {
 							className="comment__button--plus"
 						/>
 					</button>
-					{touchFlag &&
-						!comment &&
-						setTimeout(() => {
-							setTouchFlag(false);
-						}, 2000) && (
-							<p className="text__error">This field can not be empty!</p>
-						)}
+
+					{hasErrorMessage && (
+						<p className="text__error">"This field can not be empty!"</p>
+					)}
 				</form>
 			</div>
 			<div className="newComment-container">

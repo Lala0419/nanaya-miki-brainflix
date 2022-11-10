@@ -12,7 +12,10 @@ export const SideBarList = ({ videos, onVideoClick }) => {
 					key={video.id}
 					// onClick={(event) => onVideoClick(event, video.id)}
 				>
-					<Link to={`/video/${video.id}`}>
+					<Link
+						to={`/video/${video.id}`}
+						className="sidebar__img-container"
+					>
 						<img
 							src={video.image}
 							alt={video.title}

@@ -7,7 +7,14 @@
 		@include mobile-text-subheader-footer;
 
 		&-title {
+			padding: 1rem 0 2rem;
 			@include mobile-text-page-header;
+
+			@include breakpoints.medium {
+				@include tablet-desk-text-page-header;
+				padding-bottom: 2rem;
+				border-bottom: 1px solid $color-secondary-outline;
+			}
 		}
 	}
 
@@ -17,6 +24,11 @@
 		letter-spacing: 0.05rem;
 		display: flex;
 		flex-direction: column;
+
+		@include breakpoints.medium {
+			padding-bottom: 2rem;
+			border-bottom: 1px solid $color-secondary-outline;
+		}
 
 		&-title {
 			// padding-top: 1.6rem;
@@ -32,6 +44,10 @@
 		&-img {
 			width: 100%;
 			border-radius: 4px;
+
+			@include breakpoints.medium {
+				width: 50%;
+			}
 		}
 
 		&-form {
@@ -93,6 +109,12 @@
 	&__bottom {
 		position: relative;
 
+		@include breakpoints.medium {
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+		}
+
 		&-button {
 			font-family: "Avenir", sans-serif;
 			width: 100%;
@@ -114,6 +136,7 @@
 				// min-width: 150px;
 				width: auto;
 				@include tablet-desk-text-labels-buttons;
+				order: 2;
 			}
 		}
 		&-publish {
@@ -126,6 +149,11 @@
 			text-align: center;
 			@include mobile-text-labels-buttons;
 			color: $color-primary-blue;
+
+			@include breakpoints.medium {
+				order: 1;
+				padding-right: 5rem;
+			}
 		}
 	}
 }

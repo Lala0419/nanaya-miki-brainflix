@@ -1,9 +1,5 @@
 import React from "react";
 import "./hero.scss";
-import Play from "../../assets/icons/play.svg";
-import Scrubber from "../../assets/icons/scrub.svg";
-import Close from "../../assets/icons/close_fullscreen.svg";
-import VolumeUp from "../../assets/icons/volume_up.svg";
 
 export const Hero = ({ videoImg }) => {
 	return (
