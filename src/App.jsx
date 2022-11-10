@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./components/header/Header";
 import "./styles/App.scss";
-import { Home } from "./pages/Home/Home";
+import Home from "./pages/Home/Home";
 import { Upload } from "./pages/Upload/Upload";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -13,6 +13,10 @@ function App() {
 				<Routes>
 					<Route
 						path="/"
+						element={<Home />}
+					/>
+					<Route
+						path="/:videoId"
 						element={<Home />}
 					/>
 					<Route

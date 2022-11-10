@@ -1,46 +1,50 @@
-import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CommentList } from "../../components/comments/CommentList";
 import { Hero } from "../../components/hero/Hero";
 import { ItemDetail } from "../../components/item_detail/ItemDetail";
 import { SideBarList } from "../../components/sideBar/SideBarList";
-// import { getVideoDetails, getVideos } from "../../utils/utils";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
-const URL = (endpoint) =>
-	`https://project-2-api.herokuapp.com/${endpoint}?api_key=${process.env.REACT_APP_API_KEY}`;
+function Home() {
+	const apiKey = process.env.REACT_APP_API_KEY;
 
-const getVideos = URL("videos");
+	const params = useParams();
+	const [videoId, setVideoId] = useState("");
 
-const getVideoDetails = (videoId) => URL(`videos/${videoId}`);
-console.log(getVideos);
-console.log(getVideoDetails("84e96018-4022-434e-80bf-000ce4cd12b8"));
+	const [videos, setVideos] = useState([]);
+	const [videoDetails, setVideoDetails] = useState(null);
+	//empty = true null= false
 
-export const Home = () => {
-	const defaultId = "84e96018-4022-434e-80bf-000ce4cd12b8";
-	const [videoId, setVideoId] = useState(defaultId);
-	const [videos, setVideos] = useState(getVideos);
-	const [videoDetails, setVideoDetails] = useState(getVideoDetails(videoId));
-	console.log(videoDetails);
+	useEffect(() => {
+		const fetchVideos = async () => {
+			const { data } = await axios.get(
+				`https://project-2-api.herokuapp.com/videos/?api_key=${apiKey}`
+			);
+			setVideos(data.filter((video) => video.id !== videoId));
+		};
+		fetchVideos();
 
-	const handleClick = (event, currentVideoId) => {
-		event.preventDefault();
-		setVideoId(currentVideoId);
-		setVideos(getVideos(currentVideoId));
-		setVideoDetails(getVideoDetails(currentVideoId));
-	};
+		const fetchVideoDetail = async () => {
+			const { data } = await axios.get(
+				`https://project-2-api.herokuapp.com/videos/${videoId}?api_key=${apiKey}`
+			);
+			setVideoDetails(data);
+		};
+		if (videoId !== "") {
+			fetchVideoDetail();
+		}
+	}, [videoId, apiKey]);
 
-	// useEffect(() => {
-	axios.get(getVideos).then((response) => {
-		console.log(response.data);
-		// setVideos(response.data);
-	});
+	useEffect(() => {
+		params.videoId
+			? setVideoId(params.videoId)
+			: setVideoId("84e96018-4022-434e-80bf-000ce4cd12b8");
+	}, [params.videoId]);
 
-	axios
-		.get(getVideoDetails("84e96018-4022-434e-80bf-000ce4cd12b8"))
-		.then((response) => {
-			console.log(response.data);
-			// setVideoDetails(response.data);
-		});
+	if (!videoDetails) {
+		return <div className="loading">Loading...</div>;
+	}
 
 	return (
 		<>
@@ -51,12 +55,11 @@ export const Home = () => {
 					<CommentList videoComments={videoDetails.comments} />
 				</div>
 				<div className="app__right-container">
-					<SideBarList
-						videos={videos}
-						onVideoClick={handleClick}
-					/>
+					<SideBarList videos={videos} />
 				</div>
 			</div>
 		</>
 	);
-};
+}
+
+export default Home;

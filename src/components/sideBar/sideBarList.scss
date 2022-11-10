@@ -20,6 +20,10 @@
 		}
 	}
 
+	&__link {
+		text-decoration: none;
+	}
+
 	&__container {
 		display: flex;
 		padding: 1rem 0;
@@ -49,6 +53,8 @@
 	&__desc {
 		padding-left: 2rem;
 		width: 70%;
+		color: $color-secondary-dark;
+		text-decoration: none;
 
 		&:hover {
 			background-color: $color-secondary-outline;
@@ -68,6 +74,7 @@
 
 		@include breakpoints.medium {
 			@include tablet-desk-text-subheader;
+			padding-bottom: 0.8rem;
 		}
 	}
 	&__channel {
