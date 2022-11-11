@@ -12,7 +12,7 @@ function Header() {
 			<div className="header__container">
 				<div className="header__top">
 					<Link
-						to="/"
+						to="/home"
 						className="header__link"
 					>
 						<img
@@ -22,7 +22,7 @@ function Header() {
 						/>
 					</Link>
 					<Link
-						to="/"
+						to="/home"
 						className="header__link-top"
 					>
 						<h1 className="header__top-title">BrainFlix</h1>

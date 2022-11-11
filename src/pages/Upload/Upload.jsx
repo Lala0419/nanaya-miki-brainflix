@@ -62,7 +62,7 @@ export const Upload = () => {
 						className="upload__bottom-button"
 					>
 						<Link
-							to="/"
+							to="/home"
 							className="upload__bottom-button-link"
 						>
 							PUBLISH
@@ -77,7 +77,7 @@ export const Upload = () => {
 					<h2 className="upload__bottom-cancel">
 						{" "}
 						<Link
-							to="/"
+							to="/home"
 							className="upload__bottom-cancel-link"
 						>
 							CANCEL
