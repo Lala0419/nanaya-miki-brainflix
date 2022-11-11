@@ -5,8 +5,9 @@ import { ItemDetail } from "../../components/item_detail/ItemDetail";
 import { SideBarList } from "../../components/sideBar/SideBarList";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import "./Home.scss";
 
-function Home() {
+export const Home = () => {
 	const apiKey = process.env.REACT_APP_API_KEY;
 
 	const params = useParams();
@@ -60,6 +61,4 @@ function Home() {
 			</div>
 		</>
 	);
-}
-
-export default Home;
+};

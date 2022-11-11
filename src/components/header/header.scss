@@ -161,6 +161,7 @@
 			display: none;
 
 			@include breakpoints.medium {
+				@include tablet-desk-text-labels-buttons;
 				display: initial;
 				margin-left: 1rem;
 			}

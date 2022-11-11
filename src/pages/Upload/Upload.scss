@@ -136,8 +136,6 @@
 	}
 
 	&__bottom {
-		position: relative;
-
 		@include breakpoints.medium {
 			display: flex;
 			justify-content: flex-end;
@@ -154,6 +152,7 @@
 			border-radius: 4px;
 			height: 40px;
 			@include mobile-text-labels-buttons;
+			position: relative;
 
 			&:hover {
 				background-color: $color-secondary-blue;
@@ -167,21 +166,32 @@
 				@include tablet-desk-text-labels-buttons;
 				order: 2;
 			}
+
+			&-link {
+				text-decoration: none;
+				color: $color-primary-light;
+				padding: 0 2rem;
+			}
 		}
 		&-publish {
 			position: absolute;
 			left: 10px;
-			top: 28px;
+			bottom: 10px;
 		}
 
 		&-cancel {
 			text-align: center;
 			@include mobile-text-labels-buttons;
-			color: $color-primary-blue;
 
 			@include breakpoints.medium {
 				order: 1;
 				padding-right: 5rem;
+			}
+
+			&-link {
+				@include tablet-desk-text-labels-buttons;
+				text-decoration: none;
+				color: $color-primary-blue;
 			}
 		}
 	}

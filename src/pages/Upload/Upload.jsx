@@ -2,6 +2,7 @@ import React from "react";
 import "./Upload.scss";
 import Thumbnail from "../../assets/images/Upload-video-preview.jpg";
 import Publish from "../../assets/icons/publish.svg";
+import { Link } from "react-router-dom";
 
 export const Upload = () => {
 	return (
@@ -60,14 +61,28 @@ export const Upload = () => {
 						id="comment__button"
 						className="upload__bottom-button"
 					>
-						PUBLISH
+						<Link
+							to="/"
+							className="upload__bottom-button-link"
+						>
+							PUBLISH
+						</Link>
+						<img
+							className="upload__bottom-publish"
+							src={Publish}
+							alt="publish"
+						/>
 					</button>
-					<img
-						className="upload__bottom-publish"
-						src={Publish}
-						alt="publish"
-					/>
-					<h2 className="upload__bottom-cancel">CANCEL</h2>
+
+					<h2 className="upload__bottom-cancel">
+						{" "}
+						<Link
+							to="/"
+							className="upload__bottom-cancel-link"
+						>
+							CANCEL
+						</Link>
+					</h2>
 				</div>
 			</section>
 		</>

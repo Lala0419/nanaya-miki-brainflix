@@ -1,0 +1,10 @@
+@use "../../styles/partials/index" as *;
+
+.loading {
+	color: $color-primary-light;
+	background-color: orange;
+	font-size: 3rem;
+	width: 20rem;
+	line-height: 7rem;
+	text-align: center;
+}

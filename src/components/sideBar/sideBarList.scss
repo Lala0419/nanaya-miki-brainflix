@@ -6,7 +6,12 @@
 		display: flex;
 		flex-direction: column;
 		margin: 0 1.6rem;
+		width: 100%;
 		@include divide-border-top;
+
+		@include breakpoints.medium {
+			margin: 0 3.6rem;
+		}
 	}
 
 	&__list-title {
@@ -51,6 +56,9 @@
 		width: 70%;
 		color: $color-secondary-dark;
 		text-decoration: none;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
 
 		&:hover {
 			background-color: $color-secondary-outline;
@@ -58,10 +66,10 @@
 		}
 
 		@include breakpoints.medium {
-			width: 27.5%;
+			width: 27%;
 		}
 		@include breakpoints.large {
-			width: 57%;
+			width: 53%;
 		}
 	}
 
@@ -70,7 +78,7 @@
 
 		@include breakpoints.medium {
 			@include tablet-desk-text-subheader;
-			padding-bottom: 0.8rem;
+			// padding-bottom: 0.8rem;
 		}
 	}
 	&__channel {

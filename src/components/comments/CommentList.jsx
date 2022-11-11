@@ -40,10 +40,7 @@ export const CommentList = ({ videoComments }) => {
 
 	return (
 		<section className="comment">
-			<div className="comment__title">
-				{/* {videoComments.length}  */}
-				Comments
-			</div>
+			<div className="comment__title">{videoComments.length} Comments</div>
 			<div className="comment__top-container">
 				<img
 					src={Avater}
