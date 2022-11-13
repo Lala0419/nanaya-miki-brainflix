@@ -6,7 +6,12 @@
 		display: flex;
 		flex-direction: column;
 		margin: 0 1.6rem;
+		width: 100%;
 		@include divide-border-top;
+
+		@include breakpoints.medium {
+			margin: 0 3.6rem;
+		}
 	}
 
 	&__list-title {
@@ -20,6 +25,10 @@
 		}
 	}
 
+	&__link {
+		text-decoration: none;
+	}
+
 	&__container {
 		display: flex;
 		padding: 1rem 0;
@@ -27,28 +36,30 @@
 	}
 
 	&__img {
-		width: 35%;
-		height: 5rem;
+		width: 12.5rem;
+		height: 6rem;
 		border-radius: 4px;
 		background-color: $color-secondary-outline;
 		transition: 0.5s ease;
+		object-fit: cover;
 
 		&:hover {
 			transform: scale(1.1);
 		}
 
 		@include breakpoints.medium {
-			width: 15%;
 			height: 7rem;
-		}
-		@include breakpoints.large {
-			width: 35%;
 		}
 	}
 
 	&__desc {
 		padding-left: 2rem;
 		width: 70%;
+		color: $color-secondary-dark;
+		text-decoration: none;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
 
 		&:hover {
 			background-color: $color-secondary-outline;
@@ -56,10 +67,10 @@
 		}
 
 		@include breakpoints.medium {
-			width: 27.5%;
+			width: 27%;
 		}
 		@include breakpoints.large {
-			width: 57%;
+			width: 53%;
 		}
 	}
 

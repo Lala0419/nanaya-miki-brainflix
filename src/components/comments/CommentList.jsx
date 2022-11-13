@@ -4,15 +4,30 @@ import Avater from "../../assets/images/Mohan-muruge.jpg";
 import Publish from "../../assets/icons/add_comment.svg";
 
 export const CommentList = ({ videoComments }) => {
-	const [comment, setComment] = useState(true);
+	const [comment, setComment] = useState("");
+	const [hasErrorMessage, setHasErrorMessage] = useState(false);
+
+	const handleCommentClick = () => {
+		if (comment === "") {
+			setHasErrorMessage(true);
+			setTimeout(() => {
+				setHasErrorMessage(false);
+			}, 2000);
+		} else {
+			setHasErrorMessage(false);
+		}
+	};
+
+	const onCommentChange = (e) => {
+		setComment(e.target.value);
+		setHasErrorMessage(false);
+	};
 
 	const onFormSubmit = (e) => {
 		console.log(e);
 		e.preventDefault();
-		if (e.target.value === "") {
-			setComment(false);
-		} else {
-			setComment(true);
+		if (!comment) {
+			return;
 		}
 	};
 
@@ -51,10 +66,10 @@ export const CommentList = ({ videoComments }) => {
 							<textarea
 								id="comment"
 								name="comment"
-								onChange={onFormSubmit}
+								onChange={onCommentChange}
 								placeholder="Add a new comment"
 								className={`comment__form-input comment__form-input--comment ${
-									!comment && "comment__form-input--error"
+									hasErrorMessage && "comment__form-input--error"
 								}`}
 							></textarea>
 						</div>
@@ -62,6 +77,7 @@ export const CommentList = ({ videoComments }) => {
 					<button
 						id="comment__button"
 						className="comment__button"
+						onClick={handleCommentClick}
 					>
 						COMMENT
 						<img
@@ -70,11 +86,7 @@ export const CommentList = ({ videoComments }) => {
 							className="comment__button--plus"
 						/>
 					</button>
-					{!comment && (
-						// setTimeout(
-						// 	() => clearError(),
-						// 	2000
-						// )
+					{hasErrorMessage && (
 						<p className="text__error">This field can not be empty!</p>
 					)}
 				</form>

@@ -4,18 +4,29 @@ import Avater from "../../assets/images/Mohan-muruge.jpg";
 import Search from "../../assets/icons/search.svg";
 import React from "react";
 import "./header.scss";
+import { Link } from "react-router-dom";
 
 function Header() {
 	return (
 		<>
 			<div className="header__container">
 				<div className="header__top">
-					<img
-						className="header__top-play"
-						src={Play}
-						alt="play"
-					/>
-					<h1 className="header__top-title">BrainFlix</h1>
+					<Link
+						to="/home"
+						className="header__link"
+					>
+						<img
+							className="header__top-play"
+							src={Play}
+							alt="play"
+						/>
+					</Link>
+					<Link
+						to="/home"
+						className="header__link-top"
+					>
+						<h1 className="header__top-title">BrainFlix</h1>
+					</Link>
 				</div>
 				<div className="header__middle">
 					<input
@@ -39,7 +50,12 @@ function Header() {
 						alt="upload"
 						className="header__bottom-arrow"
 					/>
-					<h2 className="header__bottom-txt">UPLOAD</h2>
+					<Link
+						to="/upload"
+						className="header__link-bottom"
+					>
+						<h2 className="header__bottom-txt">UPLOAD</h2>
+					</Link>
 				</button>
 				<img
 					className="header__bottom-avater"

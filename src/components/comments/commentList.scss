@@ -212,6 +212,10 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+
+		@include breakpoints.medium {
+			padding-bottom: 0.5rem;
+		}
 	}
 
 	&__name {
