@@ -5,12 +5,13 @@
 	&__list-container {
 		display: flex;
 		flex-direction: column;
-		margin: 0 1.6rem;
+		padding: 0 1.6rem;
 		width: 100%;
 		@include divide-border-top;
 
 		@include breakpoints.medium {
 			margin: 0 3.6rem;
+			padding: 0;
 		}
 	}
 
@@ -36,7 +37,7 @@
 	}
 
 	&__img {
-		width: 12.5rem;
+		width: 10rem;
 		height: 6rem;
 		border-radius: 4px;
 		background-color: $color-secondary-outline;
@@ -49,12 +50,13 @@
 
 		@include breakpoints.medium {
 			height: 7rem;
+			width: 11.5rem;
 		}
 	}
 
 	&__desc {
-		padding-left: 2rem;
-		width: 70%;
+		padding-left: 1rem;
+		width: 18rem;
 		color: $color-secondary-dark;
 		text-decoration: none;
 		display: flex;
@@ -67,10 +69,11 @@
 		}
 
 		@include breakpoints.medium {
-			width: 27%;
+			width: 20.3rem;
+			padding-left: 2rem;
 		}
 		@include breakpoints.large {
-			width: 53%;
+			width: 54%;
 		}
 	}
 

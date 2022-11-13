@@ -47,7 +47,7 @@ export const Home = () => {
 	if (!videoDetails) {
 		return (
 			<div className="loading-container">
-				<hi className="loading-message">Loading...</hi>
+				<h1 className="loading-message">Loading...</h1>
 			</div>
 		);
 	}

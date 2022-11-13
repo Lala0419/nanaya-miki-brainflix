@@ -12,7 +12,7 @@ export const Upload = ({ setUser }) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		console.log(name, comment);
+
 		if (!name || !comment) {
 			alert(" Please filled in both sections!");
 		} else {
@@ -81,12 +81,7 @@ export const Upload = ({ setUser }) => {
 									id="comment__button"
 									className="upload__bottom-button"
 								>
-									{/* <Link
-							to="/uploadcomp"
-							className="upload__bottom-button-link"
-						> */}
 									PUBLISH
-									{/* </Link> */}
 									<img
 										className="upload__bottom-publish"
 										src={Publish}
@@ -95,7 +90,6 @@ export const Upload = ({ setUser }) => {
 								</button>
 
 								<h2 className="upload__bottom-cancel">
-									{" "}
 									<Link
 										to="/home"
 										className="upload__bottom-cancel-link"
