@@ -1,0 +1,49 @@
+@use "../../styles/partials/index" as *;
+@use "../../styles/partials/breakpoints" as breakpoints;
+
+.uploadcomp {
+	&-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&-img {
+		padding-top: 1rem;
+		width: 10rem;
+	}
+
+	&-title {
+		padding-top: 1rem;
+		font-size: 2rem;
+
+		@include breakpoints.medium {
+			font-size: 3.5rem;
+		}
+	}
+
+	&-sub {
+		font-size: 1.2rem;
+		padding: 2rem 0 0.5rem;
+	}
+
+	&-name {
+		padding-bottom: 2.5rem;
+		font-size: 1.5rem;
+		color: $color-secondary-blue;
+	}
+
+	&-button {
+		font-size: 1.2rem;
+		text-decoration: none;
+		background-color: $color-primary-blue;
+		border-radius: 4px;
+		padding: 1rem 2rem;
+		color: $color-primary-light;
+
+		&:hover {
+			background-color: $color-secondary-blue;
+		}
+	}
+}
