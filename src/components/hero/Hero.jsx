@@ -15,7 +15,7 @@ export const Hero = ({ videoImg }) => {
 				alt={videoImg.title}
 			>
 				<source
-					src={videoImg.video}
+					src={videoImg.image}
 					type="video/mp4"
 				></source>
 			</video>
