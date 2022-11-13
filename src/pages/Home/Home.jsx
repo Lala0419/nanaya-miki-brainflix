@@ -6,6 +6,7 @@ import { SideBarList } from "../../components/sideBar/SideBarList";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./Home.scss";
+import "../UploadComp/UploadComp.scss";
 
 export const Home = () => {
 	const apiKey = process.env.REACT_APP_API_KEY;
@@ -44,7 +45,11 @@ export const Home = () => {
 	}, [params.videoId]);
 
 	if (!videoDetails) {
-		return <div className="loading">Loading...</div>;
+		return (
+			<div className="loading-container">
+				<hi className="loading-message">Loading...</hi>
+			</div>
+		);
 	}
 
 	return (

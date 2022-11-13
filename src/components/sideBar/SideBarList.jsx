@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./sideBarList.scss";
 
-export const SideBarList = ({ videos, onVideoClick }) => {
+export const SideBarList = ({ videos }) => {
 	return (
 		<div className="sidebar__list-container">
 			<h2 className="sidebar__list-title">NEXT VIDOES</h2>

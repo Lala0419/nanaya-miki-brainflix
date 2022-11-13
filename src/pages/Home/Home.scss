@@ -1,10 +1,21 @@
 @use "../../styles/partials/index" as *;
 
 .loading {
-	color: $color-primary-light;
-	background-color: orange;
-	font-size: 3rem;
-	width: 20rem;
-	line-height: 7rem;
-	text-align: center;
+	&-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 50vh;
+	}
+
+	&-message {
+		margin: auto;
+		color: $color-primary-light;
+		background-color: orange;
+		font-size: 3rem;
+		width: 20rem;
+		line-height: 7rem;
+		text-align: center;
+		border-radius: 4px;
+	}
 }

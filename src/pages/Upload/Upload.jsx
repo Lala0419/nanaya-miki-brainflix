@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Upload.scss";
 import Thumbnail from "../../assets/images/Upload-video-preview.jpg";
 import Publish from "../../assets/icons/publish.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-export const Upload = () => {
+export const Upload = ({ setUser }) => {
+	const [name, setName] = useState("");
+	const [comment, setComment] = useState("");
+
+	const navigate = useNavigate();
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		console.log(name, comment);
+		if (!name || !comment) {
+			alert(" Please filled in both sections!");
+		} else {
+			setUser({ name: name, comment: comment });
+			navigate("/uploadcomp");
+		}
+	};
+
 	return (
 		<>
 			<section className="upload">
@@ -21,11 +37,14 @@ export const Upload = () => {
 						/>
 					</div>
 					<div className="upload__middle-disc-box">
-						<form className="upload__middle-form">
+						<form
+							onSubmit={handleSubmit}
+							className="upload__middle-form"
+						>
 							<div className="upload__middle-list-container">
 								<div className="upload__middle-list">
 									<label
-										for="name"
+										htmlFor="name"
 										className="upload__middle-form-label"
 									>
 										title your video
@@ -35,11 +54,13 @@ export const Upload = () => {
 										placeholder="Add a title to your video"
 										className="upload__middle-form-input"
 										id="name"
+										value={name}
+										onChange={(e) => setName(e.target.value)}
 									/>
 								</div>
 								<div className="upload__middle-list">
 									<label
-										for="comment"
+										htmlFor="comment"
 										className="upload__middle-form-label"
 									>
 										add a video description
@@ -50,39 +71,41 @@ export const Upload = () => {
 										placeholder="Add a description to your video"
 										className="upload__middle-form-input upload__middle-form-input--comment"
 										minLength="5"
+										value={comment}
+										onChange={(e) => setComment(e.target.value)}
 									></textarea>
 								</div>
 							</div>
+							<div className="upload__bottom">
+								<button
+									id="comment__button"
+									className="upload__bottom-button"
+								>
+									{/* <Link
+							to="/uploadcomp"
+							className="upload__bottom-button-link"
+						> */}
+									PUBLISH
+									{/* </Link> */}
+									<img
+										className="upload__bottom-publish"
+										src={Publish}
+										alt="publish"
+									/>
+								</button>
+
+								<h2 className="upload__bottom-cancel">
+									{" "}
+									<Link
+										to="/home"
+										className="upload__bottom-cancel-link"
+									>
+										CANCEL
+									</Link>
+								</h2>
+							</div>
 						</form>
 					</div>
-				</div>
-				<div className="upload__bottom">
-					<button
-						id="comment__button"
-						className="upload__bottom-button"
-					>
-						<Link
-							to="/home"
-							className="upload__bottom-button-link"
-						>
-							PUBLISH
-						</Link>
-						<img
-							className="upload__bottom-publish"
-							src={Publish}
-							alt="publish"
-						/>
-					</button>
-
-					<h2 className="upload__bottom-cancel">
-						{" "}
-						<Link
-							to="/home"
-							className="upload__bottom-cancel-link"
-						>
-							CANCEL
-						</Link>
-					</h2>
 				</div>
 			</section>
 		</>
