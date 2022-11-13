@@ -37,10 +37,11 @@
 
 	&__img {
 		width: 12.5rem;
-		height: 5rem;
+		height: 6rem;
 		border-radius: 4px;
 		background-color: $color-secondary-outline;
 		transition: 0.5s ease;
+		object-fit: cover;
 
 		&:hover {
 			transform: scale(1.1);
