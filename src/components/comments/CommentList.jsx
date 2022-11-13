@@ -10,6 +10,9 @@ export const CommentList = ({ videoComments }) => {
 	const handleCommentClick = () => {
 		if (comment === "") {
 			setHasErrorMessage(true);
+			setTimeout(() => {
+				setHasErrorMessage(false);
+			}, 2000);
 		} else {
 			setHasErrorMessage(false);
 		}
