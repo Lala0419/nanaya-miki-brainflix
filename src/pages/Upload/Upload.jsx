@@ -3,22 +3,41 @@ import "./Upload.scss";
 import Thumbnail from "../../assets/images/Upload-video-preview.jpg";
 import Publish from "../../assets/icons/publish.svg";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export const Upload = ({ setUser }) => {
-	const [name, setName] = useState("");
-	const [comment, setComment] = useState("");
+	const [title, setTitle] = useState("");
+	const [description, setDescription] = useState("");
 
 	const navigate = useNavigate();
+
+	const [videos, setVideos] = useState([]);
+	//? not sure sbout this
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		if (!name || !comment) {
+		if (!title || !description) {
 			alert(" Please filled in both sections!");
 		} else {
-			setUser({ name: name, comment: comment });
-			navigate("/uploadcomp");
+			setUser({
+				title,
+				description,
+			});
+
+			//? also update the sideBar with this video info. find a way to connect back end side and update the Json file. axios.post?
+			axios
+				.post(`http://localhost:8080/videos/`, {
+					title: title,
+					description: description,
+				})
+				.then((response) => {
+					setVideos([...videos, response.data]);
+				});
+			// dont think so... it looks like we are only using post for adding comments (API documment)
+			//
 		}
+		navigate("/uploadcomp");
 	};
 
 	return (
@@ -54,8 +73,8 @@ export const Upload = ({ setUser }) => {
 										placeholder="Add a title to your video"
 										className="upload__middle-form-input"
 										id="name"
-										value={name}
-										onChange={(e) => setName(e.target.value)}
+										value={title}
+										onChange={(e) => setTitle(e.target.value)}
 									/>
 								</div>
 								<div className="upload__middle-list">
@@ -71,8 +90,8 @@ export const Upload = ({ setUser }) => {
 										placeholder="Add a description to your video"
 										className="upload__middle-form-input upload__middle-form-input--comment"
 										minLength="5"
-										value={comment}
-										onChange={(e) => setComment(e.target.value)}
+										value={description}
+										onChange={(e) => setDescription(e.target.value)}
 									></textarea>
 								</div>
 							</div>

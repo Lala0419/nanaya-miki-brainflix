@@ -167,6 +167,10 @@
 				order: 2;
 			}
 
+			@include breakpoints.large {
+				padding: 0 5.5rem;
+			}
+
 			&-link {
 				text-decoration: none;
 				color: $color-primary-light;

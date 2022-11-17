@@ -9,10 +9,10 @@ import "./Home.scss";
 import "../UploadComp/UploadComp.scss";
 
 export const Home = () => {
-	const apiKey = process.env.REACT_APP_API_KEY;
-
 	const params = useParams();
 	const [videoId, setVideoId] = useState("");
+
+	// const URL = process.env.REACT_APP_URL;
 
 	const [videos, setVideos] = useState([]);
 	const [videoDetails, setVideoDetails] = useState(null);
@@ -20,23 +20,37 @@ export const Home = () => {
 
 	useEffect(() => {
 		const fetchVideos = async () => {
-			const { data } = await axios.get(
-				`https://project-2-api.herokuapp.com/videos/?api_key=${apiKey}`
-			);
+			const { data } = await axios.get(`http://localhost:8080/videos`);
+			//? It does not work with env file using ${URL}
 			setVideos(data.filter((video) => video.id !== videoId));
 		};
 		fetchVideos();
 
 		const fetchVideoDetail = async () => {
 			const { data } = await axios.get(
-				`https://project-2-api.herokuapp.com/videos/${videoId}?api_key=${apiKey}`
+				`http://localhost:8080/videos/${videoId}`
 			);
 			setVideoDetails(data);
 		};
 		if (videoId !== "") {
 			fetchVideoDetail();
 		}
-	}, [videoId, apiKey]);
+
+		//adding new comments Nov 16th
+		// 	const fetchVideoComment = async () => {
+		// 		const { data } = await axios.post(
+		// 			`http://localhost:8080/videos/${videoId}/comments`
+		// 		);
+		// 		setVideoDetails(data);
+		// 	};
+		// 	fetchVideoComment();
+	}, [videoId]);
+
+	//? If I want to post something, use POST -> the video is going to the sideBar. So I need to update the side Bar with the new video using setState(). So my guess is to do that in the sever side before it fetched by the flont side.
+	//!  --> do something in server is right but also to make sure to add post request on Upload page not here.
+
+	//? need to add event handling to add the new data with a new video on the sidevideos.
+	//! --> correct. just not here but the upload page.
 
 	useEffect(() => {
 		params.videoId
