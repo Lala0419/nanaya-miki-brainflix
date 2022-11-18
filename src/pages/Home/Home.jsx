@@ -58,10 +58,14 @@ export const Home = () => {
 	const handleCommentClick = async (comment) => {
 		const { data } = await axios.post(
 			`http://localhost:8080/videos/${videoId}/comments`,
-			{ comment: comment }
+			{
+				comment: comment,
+			}
 		);
-		console.log("data", data);
+
+		// const { data } = await axios.get(`${URL}/videos/${videoId}`);
 		setVideoDetails(data);
+		console.log("data", data);
 	};
 
 	return (
