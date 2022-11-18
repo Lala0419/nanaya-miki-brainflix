@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import "./commentList.scss";
 import Avater from "../../assets/images/Mohan-muruge.jpg";
 import Publish from "../../assets/icons/add_comment.svg";
+// import axios from "axios";
 
-export const CommentList = ({ videoComments }) => {
+export const CommentList = ({ videoComments, onclickComment }) => {
 	const [comment, setComment] = useState("");
 	const [hasErrorMessage, setHasErrorMessage] = useState(false);
 
@@ -28,6 +29,8 @@ export const CommentList = ({ videoComments }) => {
 		e.preventDefault();
 		if (!comment) {
 			return;
+		} else {
+			onclickComment(comment);
 		}
 	};
 
@@ -44,7 +47,10 @@ export const CommentList = ({ videoComments }) => {
 
 	return (
 		<section className="comment">
-			<div className="comment__title">{videoComments.length} Comments</div>
+			<div className="comment__title">
+				{videoComments.length}
+				Comments
+			</div>
 			<div className="comment__top-container">
 				<img
 					src={Avater}
