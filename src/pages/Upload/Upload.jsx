@@ -4,10 +4,14 @@ import Thumbnail from "../../assets/images/Upload-video-preview.jpg";
 import Publish from "../../assets/icons/publish.svg";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+// import { MyDropzoneComponent } from "../../components/UploadButton/UploadButton";
+import { UploadDropzone } from "react-uploader";
+import { Uploader } from "uploader";
 
 export const Upload = ({ setUser }) => {
 	const [title, setTitle] = useState("");
 	const [description, setDescription] = useState("");
+	const [image, setImage] = useState("");
 
 	const navigate = useNavigate();
 
@@ -17,12 +21,15 @@ export const Upload = ({ setUser }) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		if (!title || !description) {
-			alert(" Please filled in both sections!");
+		if (!title || !description || !image) {
+			alert(" Please filled in all the sections!");
+			//? How do I stop making it go back to home page after clicking ok in alert
+			// navigate("/upload");
 		} else {
 			setUser({
 				title,
 				description,
+				image,
 			});
 
 			//? also update the sideBar with this video info. find a way to connect back end side and update the Json file. axios.post?
@@ -30,6 +37,7 @@ export const Upload = ({ setUser }) => {
 				.post(`http://localhost:8080/videos/`, {
 					title: title,
 					description: description,
+					image: image,
 				})
 				.then((response) => {
 					setVideos([...videos, response.data]);
@@ -40,6 +48,14 @@ export const Upload = ({ setUser }) => {
 		navigate("/uploadcomp");
 	};
 
+	// Get production API keys from Upload.io
+	const uploader = Uploader({
+		apiKey: "free",
+	});
+
+	// Customize the dropzone UI (see "customization"):
+	const options = { multi: true };
+
 	return (
 		<>
 			<section className="upload">
@@ -48,11 +64,25 @@ export const Upload = ({ setUser }) => {
 				</div>
 				<div className="upload__middle">
 					<div className="upload__middle-img-container">
-						<h2 className="upload__middle-title">VIDEO THUMBNAIL</h2>
+						{/* <h2 className="upload__middle-title">VIDEO THUMBNAIL</h2> */}
 						<img
-							src={Thumbnail}
+							src={image ? image : Thumbnail}
 							alt="bycle"
 							className="upload__middle-img"
+						/>
+						<UploadDropzone
+							uploader={uploader} // Required.
+							options={options} // Optional.
+							width="600px" // Optional.
+							height="375px" // Optional.
+							onUpdate={(files) => {
+								// Optional
+								if (files.length === 0) {
+									console.log("No files selected.");
+								} else {
+									setImage(files[0].fileUrl);
+								}
+							}}
 						/>
 					</div>
 					<div className="upload__middle-disc-box">
