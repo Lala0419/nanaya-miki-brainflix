@@ -11,6 +11,7 @@ import "../UploadComp/UploadComp.scss";
 export const Home = () => {
 	const params = useParams();
 	const [videoId, setVideoId] = useState("");
+	// const [commentId, setCommendId] = useState("");
 
 	const URL = process.env.REACT_APP_URL;
 
@@ -62,10 +63,19 @@ export const Home = () => {
 				comment: comment,
 			}
 		);
-
-		// const { data } = await axios.get(`${URL}/videos/${videoId}`);
 		setVideoDetails(data);
 		console.log("data", data);
+	};
+
+	const handleDeleteCommentClick = async (commentId) => {
+		const { data } = await axios.delete(
+			`http://localhost:8080/videos/${videoId}/comments/${commentId}`,
+			{
+				comment: commentId,
+			}
+		);
+		console.log("data", data);
+		setVideoDetails(data);
 	};
 
 	return (
@@ -76,8 +86,8 @@ export const Home = () => {
 					<ItemDetail videoDetail={videoDetails} />
 					<CommentList
 						videoComments={videoDetails.comments}
-						videoId={videoId}
-						onclickComment={handleCommentClick}
+						onclickAddComment={handleCommentClick}
+						onclickDeleteComment={handleDeleteCommentClick}
 					/>
 				</div>
 				<div className="app__right-container">

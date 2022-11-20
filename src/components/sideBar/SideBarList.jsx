@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./sideBarList.scss";
 
 export const SideBarList = ({ videos }) => {
+	console.log(videos);
 	return (
 		<div className="sidebar__list-container">
 			<h2 className="sidebar__list-title">NEXT VIDOES</h2>

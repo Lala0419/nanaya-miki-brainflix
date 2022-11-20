@@ -5,7 +5,7 @@ import Publish from "../../assets/icons/publish.svg";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 // import { MyDropzoneComponent } from "../../components/UploadButton/UploadButton";
-import { UploadDropzone } from "react-uploader";
+import { UploadButton } from "react-uploader";
 import { Uploader } from "uploader";
 
 export const Upload = ({ setUser }) => {
@@ -42,8 +42,6 @@ export const Upload = ({ setUser }) => {
 				.then((response) => {
 					setVideos([...videos, response.data]);
 				});
-			// dont think so... it looks like we are only using post for adding comments (API documment)
-			//
 		}
 		navigate("/uploadcomp");
 	};
@@ -70,7 +68,23 @@ export const Upload = ({ setUser }) => {
 							alt="bycle"
 							className="upload__middle-img"
 						/>
-						<UploadDropzone
+						<UploadButton
+							uploader={uploader} // Required.
+							options={options} // Optional.
+							onComplete={(files) => {
+								// Optional.
+								if (files.length === 0) {
+									console.log("No files selected.");
+								} else {
+									setImage(files[0].fileUrl);
+								}
+							}}
+						>
+							{({ onClick }) => (
+								<button onClick={onClick}>Upload a file...</button>
+							)}
+						</UploadButton>
+						{/* <UploadDropzone
 							uploader={uploader} // Required.
 							options={options} // Optional.
 							width="600px" // Optional.
@@ -83,7 +97,7 @@ export const Upload = ({ setUser }) => {
 									setImage(files[0].fileUrl);
 								}
 							}}
-						/>
+						/> */}
 					</div>
 					<div className="upload__middle-disc-box">
 						<form
