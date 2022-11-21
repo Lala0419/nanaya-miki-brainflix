@@ -3,23 +3,56 @@ import "./Upload.scss";
 import Thumbnail from "../../assets/images/Upload-video-preview.jpg";
 import Publish from "../../assets/icons/publish.svg";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+// import { MyDropzoneComponent } from "../../components/UploadButton/UploadButton";
+import { UploadButton } from "react-uploader";
+import { Uploader } from "uploader";
 
 export const Upload = ({ setUser }) => {
-	const [name, setName] = useState("");
-	const [comment, setComment] = useState("");
+	const [title, setTitle] = useState("");
+	const [description, setDescription] = useState("");
+	const [image, setImage] = useState("");
 
 	const navigate = useNavigate();
+
+	const [videos, setVideos] = useState([]);
+	//? not sure sbout this
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		if (!name || !comment) {
-			alert(" Please filled in both sections!");
+		if (!title || !description || !image) {
+			alert(" Please filled in all the sections!");
+			//? How do I stop making it go back to home page after clicking ok in alert
+			// navigate("/upload");
 		} else {
-			setUser({ name: name, comment: comment });
-			navigate("/uploadcomp");
+			setUser({
+				title,
+				description,
+				image,
+			});
+
+			//? also update the sideBar with this video info. find a way to connect back end side and update the Json file. axios.post?
+			axios
+				.post(`http://localhost:8080/videos/`, {
+					title: title,
+					description: description,
+					image: image,
+				})
+				.then((response) => {
+					setVideos([...videos, response.data]);
+				});
 		}
+		navigate("/uploadcomp");
 	};
+
+	// Get production API keys from Upload.io
+	const uploader = Uploader({
+		apiKey: "free",
+	});
+
+	// Customize the dropzone UI (see "customization"):
+	const options = { multi: true };
 
 	return (
 		<>
@@ -29,12 +62,29 @@ export const Upload = ({ setUser }) => {
 				</div>
 				<div className="upload__middle">
 					<div className="upload__middle-img-container">
-						<h2 className="upload__middle-title">VIDEO THUMBNAIL</h2>
 						<img
-							src={Thumbnail}
+							src={image ? image : Thumbnail}
 							alt="bycle"
 							className="upload__middle-img"
 						/>
+						<div className="upload__middle-button">
+							<UploadButton
+								uploader={uploader} // Required.
+								options={options} // Optional.
+								onComplete={(files) => {
+									// Optional.
+									if (files.length === 0) {
+										console.log("No files selected.");
+									} else {
+										setImage(files[0].fileUrl);
+									}
+								}}
+							>
+								{({ onClick }) => (
+									<button onClick={onClick}>Upload a file...</button>
+								)}
+							</UploadButton>
+						</div>
 					</div>
 					<div className="upload__middle-disc-box">
 						<form
@@ -54,8 +104,8 @@ export const Upload = ({ setUser }) => {
 										placeholder="Add a title to your video"
 										className="upload__middle-form-input"
 										id="name"
-										value={name}
-										onChange={(e) => setName(e.target.value)}
+										value={title}
+										onChange={(e) => setTitle(e.target.value)}
 									/>
 								</div>
 								<div className="upload__middle-list">
@@ -71,8 +121,8 @@ export const Upload = ({ setUser }) => {
 										placeholder="Add a description to your video"
 										className="upload__middle-form-input upload__middle-form-input--comment"
 										minLength="5"
-										value={comment}
-										onChange={(e) => setComment(e.target.value)}
+										value={description}
+										onChange={(e) => setDescription(e.target.value)}
 									></textarea>
 								</div>
 							</div>

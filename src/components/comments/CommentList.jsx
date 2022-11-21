@@ -2,8 +2,15 @@ import React, { useState } from "react";
 import "./commentList.scss";
 import Avater from "../../assets/images/Mohan-muruge.jpg";
 import Publish from "../../assets/icons/add_comment.svg";
+import TrashCan from "../../assets/icons/trash-can.png";
+// import axios from "axios";
+// import axios from "axios";
 
-export const CommentList = ({ videoComments }) => {
+export const CommentList = ({
+	videoComments,
+	onclickAddComment,
+	onclickDeleteComment,
+}) => {
 	const [comment, setComment] = useState("");
 	const [hasErrorMessage, setHasErrorMessage] = useState(false);
 
@@ -28,6 +35,8 @@ export const CommentList = ({ videoComments }) => {
 		e.preventDefault();
 		if (!comment) {
 			return;
+		} else {
+			onclickAddComment(comment);
 		}
 	};
 
@@ -44,7 +53,10 @@ export const CommentList = ({ videoComments }) => {
 
 	return (
 		<section className="comment">
-			<div className="comment__title">{videoComments.length} Comments</div>
+			<div className="comment__title">
+				{videoComments.length}
+				Comments
+			</div>
 			<div className="comment__top-container">
 				<img
 					src={Avater}
@@ -112,6 +124,16 @@ export const CommentList = ({ videoComments }) => {
 									</span>
 								</div>
 								<h3 className="newComment__comment">{comment.comment}</h3>
+								<div
+									className="newComment__trashcan"
+									onClick={() => onclickDeleteComment(comment.id)}
+								>
+									<img
+										className="newComment__trashcan-img"
+										src={TrashCan}
+										alt="trash-can"
+									></img>
+								</div>
 							</div>
 						</div>
 					</div>

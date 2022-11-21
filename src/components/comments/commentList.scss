@@ -242,6 +242,11 @@
 			letter-spacing: 0.03rem;
 		}
 	}
+
+	&__trashcan {
+		text-align: right;
+		padding-right: 1rem;
+	}
 }
 
 .text__error {
