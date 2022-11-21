@@ -29,15 +29,6 @@
 
 	&__top-container {
 		display: flex;
-
-		@include breakpoints.medium {
-		}
-
-		@include breakpoints.large {
-			// padding-left: 0;
-			// width: 50%;
-			// margin: auto;
-		}
 	}
 
 	&__icon {
@@ -225,10 +216,6 @@
 	&__date {
 		color: $color-secondary-outline;
 		@include mobile-text-body-footer;
-
-		@include breakpoints.large {
-			// padding-right: 0.5rem;
-		}
 	}
 
 	&__comment {

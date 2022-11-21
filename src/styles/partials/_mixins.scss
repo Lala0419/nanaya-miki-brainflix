@@ -9,9 +9,9 @@
 }
 
 @mixin mobile-text-section-header {
-	font-size: 1.2rem; //1.4rem on style guide
-	font-weight: 600; //700
-	line-height: 22px; //20px
+	font-size: 1.2rem;
+	font-weight: 600;
+	line-height: 22px;
 }
 
 @mixin mobile-text-subheader-footer {
@@ -62,8 +62,6 @@
 	font-weight: 700;
 	line-height: 20px;
 }
-
-// mobile padding
 
 @mixin mobile-padding-headlines {
 	padding: 2.4rem 0 1.6rem 0;

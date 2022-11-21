@@ -3,8 +3,6 @@ import "./commentList.scss";
 import Avater from "../../assets/images/Mohan-muruge.jpg";
 import Publish from "../../assets/icons/add_comment.svg";
 import TrashCan from "../../assets/icons/trash-can.png";
-// import axios from "axios";
-// import axios from "axios";
 
 export const CommentList = ({
 	videoComments,
@@ -31,7 +29,6 @@ export const CommentList = ({
 	};
 
 	const onFormSubmit = (e) => {
-		console.log(e);
 		e.preventDefault();
 		if (!comment) {
 			return;

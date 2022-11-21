@@ -4,7 +4,7 @@ import Thumbnail from "../../assets/images/Upload-video-preview.jpg";
 import Publish from "../../assets/icons/publish.svg";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-// import { MyDropzoneComponent } from "../../components/UploadButton/UploadButton";
+
 import { UploadButton } from "react-uploader";
 import { Uploader } from "uploader";
 
@@ -16,15 +16,12 @@ export const Upload = ({ setUser }) => {
 	const navigate = useNavigate();
 
 	const [videos, setVideos] = useState([]);
-	//? not sure sbout this
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		if (!title || !description || !image) {
 			alert(" Please filled in all the sections!");
-			//? How do I stop making it go back to home page after clicking ok in alert
-			// navigate("/upload");
 		} else {
 			setUser({
 				title,
@@ -32,7 +29,6 @@ export const Upload = ({ setUser }) => {
 				image,
 			});
 
-			//? also update the sideBar with this video info. find a way to connect back end side and update the Json file. axios.post?
 			axios
 				.post(`http://localhost:8080/videos/`, {
 					title: title,
@@ -46,12 +42,10 @@ export const Upload = ({ setUser }) => {
 		navigate("/uploadcomp");
 	};
 
-	// Get production API keys from Upload.io
 	const uploader = Uploader({
 		apiKey: "free",
 	});
 
-	// Customize the dropzone UI (see "customization"):
 	const options = { multi: true };
 
 	return (

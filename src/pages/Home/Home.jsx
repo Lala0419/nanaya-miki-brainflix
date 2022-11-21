@@ -11,18 +11,16 @@ import "../UploadComp/UploadComp.scss";
 export const Home = () => {
 	const params = useParams();
 	const [videoId, setVideoId] = useState("");
-	// const [commentId, setCommendId] = useState("");
 
 	const URL = process.env.REACT_APP_URL;
 
 	const [videos, setVideos] = useState([]);
 	const [videoDetails, setVideoDetails] = useState(null);
-	//empty = true null= false
 
 	useEffect(() => {
 		const fetchVideos = async () => {
 			const { data } = await axios.get(`${URL}/videos`);
-			//? It does not work with env file using ${URL}
+
 			setVideos(data.filter((video) => video.id !== videoId));
 		};
 		fetchVideos();
@@ -35,12 +33,6 @@ export const Home = () => {
 			fetchVideoDetail();
 		}
 	}, [videoId, URL]);
-
-	//? If I want to post something, use POST -> the video is going to the sideBar. So I need to update the side Bar with the new video using setState(). So my guess is to do that in the sever side before it fetched by the flont side.
-	//!  --> do something in server is right but also to make sure to add post request on Upload page not here.
-
-	//? need to add event handling to add the new data with a new video on the sidevideos.
-	//! --> correct. just not here but the upload page.
 
 	useEffect(() => {
 		params.videoId
@@ -64,7 +56,6 @@ export const Home = () => {
 			}
 		);
 		setVideoDetails(data);
-		console.log("data", data);
 	};
 
 	const handleDeleteCommentClick = async (commentId) => {
@@ -74,7 +65,7 @@ export const Home = () => {
 				comment: commentId,
 			}
 		);
-		console.log("data", data);
+
 		setVideoDetails(data);
 	};
 

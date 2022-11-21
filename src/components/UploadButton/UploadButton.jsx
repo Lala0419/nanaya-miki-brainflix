@@ -1,23 +1,19 @@
 import { Uploader } from "uploader";
 import { UploadDropzone } from "react-uploader";
 
-// Get production API keys from Upload.io
 const uploader = Uploader({
 	apiKey: "free",
 });
 
-// Customize the dropzone UI (see "customization"):
 const options = { multi: true };
 
-// Render the file upload dropzone:
 export const MyDropzoneComponent = () => (
 	<UploadDropzone
-		uploader={uploader} // Required.
-		options={options} // Optional.
-		width="600px" // Optional.
-		height="375px" // Optional.
+		uploader={uploader}
+		options={options}
+		width="600px"
+		height="375px"
 		onUpdate={(files) => {
-			// Optional.
 			if (files.length === 0) {
 				console.log("No files selected.");
 			} else {
