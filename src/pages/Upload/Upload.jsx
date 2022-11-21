@@ -62,42 +62,29 @@ export const Upload = ({ setUser }) => {
 				</div>
 				<div className="upload__middle">
 					<div className="upload__middle-img-container">
-						{/* <h2 className="upload__middle-title">VIDEO THUMBNAIL</h2> */}
 						<img
 							src={image ? image : Thumbnail}
 							alt="bycle"
 							className="upload__middle-img"
 						/>
-						<UploadButton
-							uploader={uploader} // Required.
-							options={options} // Optional.
-							onComplete={(files) => {
-								// Optional.
-								if (files.length === 0) {
-									console.log("No files selected.");
-								} else {
-									setImage(files[0].fileUrl);
-								}
-							}}
-						>
-							{({ onClick }) => (
-								<button onClick={onClick}>Upload a file...</button>
-							)}
-						</UploadButton>
-						{/* <UploadDropzone
-							uploader={uploader} // Required.
-							options={options} // Optional.
-							width="600px" // Optional.
-							height="375px" // Optional.
-							onUpdate={(files) => {
-								// Optional
-								if (files.length === 0) {
-									console.log("No files selected.");
-								} else {
-									setImage(files[0].fileUrl);
-								}
-							}}
-						/> */}
+						<div className="upload__middle-button">
+							<UploadButton
+								uploader={uploader} // Required.
+								options={options} // Optional.
+								onComplete={(files) => {
+									// Optional.
+									if (files.length === 0) {
+										console.log("No files selected.");
+									} else {
+										setImage(files[0].fileUrl);
+									}
+								}}
+							>
+								{({ onClick }) => (
+									<button onClick={onClick}>Upload a file...</button>
+								)}
+							</UploadButton>
+						</div>
 					</div>
 					<div className="upload__middle-disc-box">
 						<form
