@@ -1,0 +1,207 @@
+@use "../../styles/partials/index" as *;
+@use "../../styles/partials/breakpoints" as breakpoints;
+
+.upload {
+	padding: 1.6rem;
+
+	@include breakpoints.medium {
+		padding: 1.6rem 3.6rem;
+	}
+
+	@include breakpoints.large {
+		padding: 1.6rem 10rem;
+	}
+	&__top {
+		@include mobile-text-subheader-footer;
+
+		&-title {
+			padding: 1rem 0 2rem;
+			@include mobile-text-page-header;
+
+			@include breakpoints.medium {
+				@include tablet-desk-text-page-header;
+				padding-bottom: 2rem;
+				border-bottom: 1px solid $color-secondary-outline;
+			}
+		}
+	}
+
+	&__middle {
+		text-transform: uppercase;
+		color: $color-secondary-outline;
+		letter-spacing: 0.05rem;
+		display: flex;
+		flex-direction: column;
+
+		@include breakpoints.medium {
+			padding-bottom: 2rem;
+			border-bottom: 1px solid $color-secondary-outline;
+		}
+
+		@include breakpoints.large {
+			flex-direction: row;
+			justify-content: space-between;
+		}
+
+		&-title {
+			color: $color-primary-inactive;
+			font-weight: 700;
+			@include label-padding;
+			padding-top: 2rem;
+			@include mobile-text-labels-buttons;
+			text-align: left;
+		}
+
+		&-img {
+			width: 100%;
+			border-radius: 4px;
+
+			@include breakpoints.medium {
+				width: 50%;
+			}
+
+			@include breakpoints.large {
+				width: 100%;
+
+				&-container {
+					@include breakpoints.large {
+						display: flex;
+						flex-direction: column;
+						width: 35rem;
+						padding-top: 2rem;
+					}
+				}
+			}
+		}
+
+		&-button {
+			padding-top: 2rem;
+		}
+
+		&-disc-box {
+			@include breakpoints.large {
+				width: 65%;
+			}
+		}
+
+		&-form {
+			width: 100%;
+			text-align: right;
+		}
+
+		&-list {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+		}
+
+		&-form-label {
+			color: $color-primary-inactive;
+			font-weight: 700;
+			@include label-padding;
+			padding-top: 2rem;
+			@include mobile-text-labels-buttons;
+			text-align: left;
+
+			@include breakpoints.medium {
+				@include tablet-desk-text-labels-buttons;
+			}
+		}
+
+		&-form-input {
+			@include mobile-form-styles;
+
+			&:focus {
+				@include form-field-border--active;
+			}
+
+			&--error {
+				border: 1px solid #d22d2d;
+			}
+
+			&--comment {
+				height: 8rem;
+				font-family: inherit;
+				font-weight: 500;
+				resize: none;
+
+				@include breakpoints.medium {
+					height: 10rem;
+				}
+
+				&--error {
+					border: 1px solid #d22d2d;
+				}
+			}
+
+			@include breakpoints.medium {
+				@include tablet-desktop-form-styles;
+			}
+		}
+	}
+
+	&__bottom {
+		@include breakpoints.medium {
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+		}
+
+		&-button {
+			font-family: "Avenir", sans-serif;
+			width: 100%;
+			margin: 2rem 0;
+			background-color: $color-primary-blue;
+			color: $color-primary-light;
+			border: none;
+			border-radius: 4px;
+			height: 40px;
+			@include mobile-text-labels-buttons;
+			position: relative;
+
+			&:hover {
+				background-color: $color-secondary-blue;
+				cursor: pointer;
+			}
+
+			@include breakpoints.medium {
+				padding: 0 3.2rem;
+
+				width: auto;
+				@include tablet-desk-text-labels-buttons;
+				order: 2;
+			}
+
+			@include breakpoints.large {
+				padding: 0 5.5rem;
+			}
+
+			&-link {
+				text-decoration: none;
+				color: $color-primary-light;
+				padding: 0 2rem;
+			}
+		}
+		&-publish {
+			position: absolute;
+			left: 10px;
+			bottom: 10px;
+		}
+
+		&-cancel {
+			text-align: center;
+			@include mobile-text-labels-buttons;
+
+			@include breakpoints.medium {
+				order: 1;
+				padding-right: 5rem;
+			}
+
+			&-link {
+				@include tablet-desk-text-labels-buttons;
+				text-decoration: none;
+				color: $color-primary-blue;
+			}
+		}
+	}
+}

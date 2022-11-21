@@ -212,6 +212,10 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+
+		@include breakpoints.medium {
+			padding-bottom: 0.5rem;
+		}
 	}
 
 	&__name {
@@ -237,6 +241,11 @@
 			padding-right: 0.5rem;
 			letter-spacing: 0.03rem;
 		}
+	}
+
+	&__trashcan {
+		text-align: right;
+		padding-right: 1rem;
 	}
 }
 

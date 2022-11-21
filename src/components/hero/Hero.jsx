@@ -1,9 +1,5 @@
 import React from "react";
 import "./hero.scss";
-import Play from "../../assets/icons/play.svg";
-import Scrubber from "../../assets/icons/scrub.svg";
-import Close from "../../assets/icons/close_fullscreen.svg";
-import VolumeUp from "../../assets/icons/volume_up.svg";
 
 export const Hero = ({ videoImg }) => {
 	return (
@@ -15,30 +11,10 @@ export const Hero = ({ videoImg }) => {
 				alt={videoImg.title}
 			>
 				<source
-					src={videoImg.video}
+					src={videoImg.image}
 					type="video/mp4"
 				></source>
 			</video>
-			{/* <img
-				className="hero__play"
-				src={Play}
-				alt="play"
-			/>
-			<img
-				className="hero__scrub"
-				src={Scrubber}
-				alt="scrub"
-			/>
-			<img
-				className="hero__close"
-				src={Close}
-				alt="close_fullscreen"
-			/>
-			<img
-				className="hero__volumeup"
-				src={VolumeUp}
-				alt="volume_up"
-			/> */}
 		</div>
 	);
 };

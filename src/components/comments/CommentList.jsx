@@ -2,23 +2,42 @@ import React, { useState } from "react";
 import "./commentList.scss";
 import Avater from "../../assets/images/Mohan-muruge.jpg";
 import Publish from "../../assets/icons/add_comment.svg";
+import TrashCan from "../../assets/icons/trash-can.png";
+// import axios from "axios";
+// import axios from "axios";
 
-export const CommentList = ({ videoComments }) => {
+export const CommentList = ({
+	videoComments,
+	onclickAddComment,
+	onclickDeleteComment,
+}) => {
 	const [comment, setComment] = useState("");
-	const [touchFlag, setTouchFlag] = useState(false);
+	const [hasErrorMessage, setHasErrorMessage] = useState(false);
+
+	const handleCommentClick = () => {
+		if (comment === "") {
+			setHasErrorMessage(true);
+			setTimeout(() => {
+				setHasErrorMessage(false);
+			}, 2000);
+		} else {
+			setHasErrorMessage(false);
+		}
+	};
 
 	const onCommentChange = (e) => {
-		setTouchFlag(true);
 		setComment(e.target.value);
+		setHasErrorMessage(false);
 	};
 
 	const onFormSubmit = (e) => {
+		console.log(e);
 		e.preventDefault();
 		if (!comment) {
-			setTouchFlag(true);
 			return;
+		} else {
+			onclickAddComment(comment);
 		}
-		addComment(e.target.comment.value);
 	};
 
 	const formattedDate = (timeStamp) => {
@@ -32,15 +51,12 @@ export const CommentList = ({ videoComments }) => {
 			.replace(/-/g, "/");
 	};
 
-	const addComment = (event) => {
-		event.preventDefault();
-
-		event.target.reset();
-	};
-
 	return (
 		<section className="comment">
-			<div className="comment__title">{videoComments.length} Comments</div>
+			<div className="comment__title">
+				{videoComments.length}
+				Comments
+			</div>
 			<div className="comment__top-container">
 				<img
 					src={Avater}
@@ -61,19 +77,19 @@ export const CommentList = ({ videoComments }) => {
 							</label>
 							<textarea
 								id="comment"
-								onChange={onCommentChange}
 								name="comment"
+								onChange={onCommentChange}
 								placeholder="Add a new comment"
 								className={`comment__form-input comment__form-input--comment ${
-									touchFlag && !comment && "comment__form-input--error"
+									hasErrorMessage && "comment__form-input--error"
 								}`}
-								value={comment}
 							></textarea>
 						</div>
 					</div>
 					<button
 						id="comment__button"
 						className="comment__button"
+						onClick={handleCommentClick}
 					>
 						COMMENT
 						<img
@@ -82,13 +98,9 @@ export const CommentList = ({ videoComments }) => {
 							className="comment__button--plus"
 						/>
 					</button>
-					{touchFlag &&
-						!comment &&
-						setTimeout(() => {
-							setTouchFlag(false);
-						}, 2000) && (
-							<p className="text__error">This field can not be empty!</p>
-						)}
+					{hasErrorMessage && (
+						<p className="text__error">This field can not be empty!</p>
+					)}
 				</form>
 			</div>
 			<div className="newComment-container">
@@ -112,6 +124,16 @@ export const CommentList = ({ videoComments }) => {
 									</span>
 								</div>
 								<h3 className="newComment__comment">{comment.comment}</h3>
+								<div
+									className="newComment__trashcan"
+									onClick={() => onclickDeleteComment(comment.id)}
+								>
+									<img
+										className="newComment__trashcan-img"
+										src={TrashCan}
+										alt="trash-can"
+									></img>
+								</div>
 							</div>
 						</div>
 					</div>
